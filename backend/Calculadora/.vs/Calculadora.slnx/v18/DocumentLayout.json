@@ -1,0 +1,88 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Xhope\\Desktop\\Calculadora\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{EBA252C3-8230-4C29-A759-CF93190D20CB}|Calculadora.Startup\\Calculadora.Startup.csproj|c:\\users\\xhope\\desktop\\calculadora\\calculadora.startup\\class\\application.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EBA252C3-8230-4C29-A759-CF93190D20CB}|Calculadora.Startup\\Calculadora.Startup.csproj|solutionrelative:calculadora.startup\\class\\application.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EBA252C3-8230-4C29-A759-CF93190D20CB}|Calculadora.Startup\\Calculadora.Startup.csproj|c:\\users\\xhope\\desktop\\calculadora\\calculadora.startup\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EBA252C3-8230-4C29-A759-CF93190D20CB}|Calculadora.Startup\\Calculadora.Startup.csproj|solutionrelative:calculadora.startup\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EBA252C3-8230-4C29-A759-CF93190D20CB}|Calculadora.Startup\\Calculadora.Startup.csproj|c:\\users\\xhope\\desktop\\calculadora\\calculadora.startup\\interfaces\\icalculadora.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EBA252C3-8230-4C29-A759-CF93190D20CB}|Calculadora.Startup\\Calculadora.Startup.csproj|solutionrelative:calculadora.startup\\interfaces\\icalculadora.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EBA252C3-8230-4C29-A759-CF93190D20CB}|Calculadora.Startup\\Calculadora.Startup.csproj|c:\\users\\xhope\\desktop\\calculadora\\calculadora.startup\\models\\command.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EBA252C3-8230-4C29-A759-CF93190D20CB}|Calculadora.Startup\\Calculadora.Startup.csproj|solutionrelative:calculadora.startup\\models\\command.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Xhope\\Desktop\\Calculadora\\Calculadora.Startup\\Program.cs",
+              "RelativeDocumentMoniker": "Calculadora.Startup\\Program.cs",
+              "ToolTip": "C:\\Users\\Xhope\\Desktop\\Calculadora\\Calculadora.Startup\\Program.cs",
+              "RelativeToolTip": "Calculadora.Startup\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-18T17:17:40.536Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ICalculadora.cs",
+              "DocumentMoniker": "C:\\Users\\Xhope\\Desktop\\Calculadora\\Calculadora.Startup\\Interfaces\\ICalculadora.cs",
+              "RelativeDocumentMoniker": "Calculadora.Startup\\Interfaces\\ICalculadora.cs",
+              "ToolTip": "C:\\Users\\Xhope\\Desktop\\Calculadora\\Calculadora.Startup\\Interfaces\\ICalculadora.cs",
+              "RelativeToolTip": "Calculadora.Startup\\Interfaces\\ICalculadora.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAxwBIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-18T17:15:11.549Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Command.cs",
+              "DocumentMoniker": "C:\\Users\\Xhope\\Desktop\\Calculadora\\Calculadora.Startup\\Models\\Command.cs",
+              "RelativeDocumentMoniker": "Calculadora.Startup\\Models\\Command.cs",
+              "ToolTip": "C:\\Users\\Xhope\\Desktop\\Calculadora\\Calculadora.Startup\\Models\\Command.cs",
+              "RelativeToolTip": "Calculadora.Startup\\Models\\Command.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-18T17:10:24.564Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Application.cs",
+              "DocumentMoniker": "C:\\Users\\Xhope\\Desktop\\Calculadora\\Calculadora.Startup\\Class\\Application.cs",
+              "RelativeDocumentMoniker": "Calculadora.Startup\\Class\\Application.cs",
+              "ToolTip": "C:\\Users\\Xhope\\Desktop\\Calculadora\\Calculadora.Startup\\Class\\Application.cs",
+              "RelativeToolTip": "Calculadora.Startup\\Class\\Application.cs",
+              "ViewState": "AgIAACwAAAAAAAAAAAAswDIAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-18T17:10:00.163Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
