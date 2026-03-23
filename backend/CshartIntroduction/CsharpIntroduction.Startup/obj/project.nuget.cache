@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "1KrRw6dAqHI=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Xhope\\Desktop\\clases\\github\\vmt-bootcamp\\backend\\CshartIntroduction\\CsharpIntroduction.Startup\\CsharpIntroduction.Startup.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Xhope\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.23.0\\microsoft.visualstudio.azure.containers.tools.targets.1.23.0.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "CsharpIntroduction.Startup": {
+      "commandName": "Project"
+    },
+    "Container (Dockerfile)": {
+      "commandName": "Docker"
+    }
+  }
+}
