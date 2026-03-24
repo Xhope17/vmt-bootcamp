@@ -1,0 +1,16 @@
+C:\Users\Xhope\Desktop\clases\github\vmt-bootcamp\backend\TalentInsights\TalentInsights.Application\bin\Debug\net9.0\TalentInsights.Application.deps.json
+C:\Users\Xhope\Desktop\clases\github\vmt-bootcamp\backend\TalentInsights\TalentInsights.Application\bin\Debug\net9.0\TalentInsights.Application.dll
+C:\Users\Xhope\Desktop\clases\github\vmt-bootcamp\backend\TalentInsights\TalentInsights.Application\bin\Debug\net9.0\TalentInsights.Application.pdb
+C:\Users\Xhope\Desktop\clases\github\vmt-bootcamp\backend\TalentInsights\TalentInsights.Application\bin\Debug\net9.0\TalentInsights.Shared.dll
+C:\Users\Xhope\Desktop\clases\github\vmt-bootcamp\backend\TalentInsights\TalentInsights.Application\bin\Debug\net9.0\TalentInsights.Shared.pdb
+C:\Users\Xhope\Desktop\clases\github\vmt-bootcamp\backend\TalentInsights\TalentInsights.Application\obj\Debug\net9.0\TalentInsights.Application.csproj.AssemblyReference.cache
+C:\Users\Xhope\Desktop\clases\github\vmt-bootcamp\backend\TalentInsights\TalentInsights.Application\obj\Debug\net9.0\TalentInsights.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Xhope\Desktop\clases\github\vmt-bootcamp\backend\TalentInsights\TalentInsights.Application\obj\Debug\net9.0\TalentInsights.Application.AssemblyInfoInputs.cache
+C:\Users\Xhope\Desktop\clases\github\vmt-bootcamp\backend\TalentInsights\TalentInsights.Application\obj\Debug\net9.0\TalentInsights.Application.AssemblyInfo.cs
+C:\Users\Xhope\Desktop\clases\github\vmt-bootcamp\backend\TalentInsights\TalentInsights.Application\obj\Debug\net9.0\TalentInsights.Application.csproj.CoreCompileInputs.cache
+C:\Users\Xhope\Desktop\clases\github\vmt-bootcamp\backend\TalentInsights\TalentInsights.Application\obj\Debug\net9.0\TalentInsights.Application.sourcelink.json
+C:\Users\Xhope\Desktop\clases\github\vmt-bootcamp\backend\TalentInsights\TalentInsights.Application\obj\Debug\net9.0\TalentIn.D66CAC79.Up2Date
+C:\Users\Xhope\Desktop\clases\github\vmt-bootcamp\backend\TalentInsights\TalentInsights.Application\obj\Debug\net9.0\TalentInsights.Application.dll
+C:\Users\Xhope\Desktop\clases\github\vmt-bootcamp\backend\TalentInsights\TalentInsights.Application\obj\Debug\net9.0\refint\TalentInsights.Application.dll
+C:\Users\Xhope\Desktop\clases\github\vmt-bootcamp\backend\TalentInsights\TalentInsights.Application\obj\Debug\net9.0\TalentInsights.Application.pdb
+C:\Users\Xhope\Desktop\clases\github\vmt-bootcamp\backend\TalentInsights\TalentInsights.Application\obj\Debug\net9.0\ref\TalentInsights.Application.dll

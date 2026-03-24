@@ -1,0 +1,39 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v9.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v9.0": {
+      "TalentInsights.Application/1.0.0": {
+        "dependencies": {
+          "TalentInsights.Shared": "1.0.0"
+        },
+        "runtime": {
+          "TalentInsights.Application.dll": {}
+        }
+      },
+      "TalentInsights.Shared/1.0.0": {
+        "runtime": {
+          "TalentInsights.Shared.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "TalentInsights.Application/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "TalentInsights.Shared/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

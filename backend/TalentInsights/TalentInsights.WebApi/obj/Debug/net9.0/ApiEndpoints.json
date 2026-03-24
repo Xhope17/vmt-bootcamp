@@ -1,0 +1,102 @@
+[
+  {
+    "ContainingType": "TalentInsights.WebApi.Controllers.CollaboratorsController",
+    "Method": "Create",
+    "RelativePath": "api/Collaborators",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "TalentInsights.Application.Models.Requets.Collaborator.CreateCollaboratorRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TalentInsights.WebApi.Controllers.CollaboratorsController",
+    "Method": "GetAll",
+    "RelativePath": "api/Collaborators",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TalentInsights.WebApi.Controllers.CollaboratorsController",
+    "Method": "GetById",
+    "RelativePath": "api/Collaborators/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TalentInsights.WebApi.Controllers.CollaboratorsController",
+    "Method": "Update",
+    "RelativePath": "api/Collaborators/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "TalentInsights.Application.Models.Requets.Collaborator.UpdateCollaboratorRequestcs",
+        "IsRequired": true
+      },
+      {
+        "Name": "id",
+        "Type": "",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TalentInsights.WebApi.Controllers.CollaboratorsController",
+    "Method": "Delete",
+    "RelativePath": "api/Collaborators/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TalentInsights.WebApi.Controllers.CollaboratorsController",
+    "Method": "ChangePassword",
+    "RelativePath": "api/Collaborators/change-password/{id}",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "model",
+        "Type": "TalentInsights.Application.Models.Requets.Collaborator.ChangePasswordCollaboratorRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

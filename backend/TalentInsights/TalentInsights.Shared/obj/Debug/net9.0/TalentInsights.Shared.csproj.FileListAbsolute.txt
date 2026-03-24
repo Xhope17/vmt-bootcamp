@@ -1,0 +1,12 @@
+C:\Users\Xhope\Desktop\clases\github\vmt-bootcamp\backend\TalentInsights\TalentInsights.Shared\bin\Debug\net9.0\TalentInsights.Shared.deps.json
+C:\Users\Xhope\Desktop\clases\github\vmt-bootcamp\backend\TalentInsights\TalentInsights.Shared\bin\Debug\net9.0\TalentInsights.Shared.dll
+C:\Users\Xhope\Desktop\clases\github\vmt-bootcamp\backend\TalentInsights\TalentInsights.Shared\bin\Debug\net9.0\TalentInsights.Shared.pdb
+C:\Users\Xhope\Desktop\clases\github\vmt-bootcamp\backend\TalentInsights\TalentInsights.Shared\obj\Debug\net9.0\TalentInsights.Shared.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Xhope\Desktop\clases\github\vmt-bootcamp\backend\TalentInsights\TalentInsights.Shared\obj\Debug\net9.0\TalentInsights.Shared.AssemblyInfoInputs.cache
+C:\Users\Xhope\Desktop\clases\github\vmt-bootcamp\backend\TalentInsights\TalentInsights.Shared\obj\Debug\net9.0\TalentInsights.Shared.AssemblyInfo.cs
+C:\Users\Xhope\Desktop\clases\github\vmt-bootcamp\backend\TalentInsights\TalentInsights.Shared\obj\Debug\net9.0\TalentInsights.Shared.csproj.CoreCompileInputs.cache
+C:\Users\Xhope\Desktop\clases\github\vmt-bootcamp\backend\TalentInsights\TalentInsights.Shared\obj\Debug\net9.0\TalentInsights.Shared.sourcelink.json
+C:\Users\Xhope\Desktop\clases\github\vmt-bootcamp\backend\TalentInsights\TalentInsights.Shared\obj\Debug\net9.0\TalentInsights.Shared.dll
+C:\Users\Xhope\Desktop\clases\github\vmt-bootcamp\backend\TalentInsights\TalentInsights.Shared\obj\Debug\net9.0\refint\TalentInsights.Shared.dll
+C:\Users\Xhope\Desktop\clases\github\vmt-bootcamp\backend\TalentInsights\TalentInsights.Shared\obj\Debug\net9.0\TalentInsights.Shared.pdb
+C:\Users\Xhope\Desktop\clases\github\vmt-bootcamp\backend\TalentInsights\TalentInsights.Shared\obj\Debug\net9.0\ref\TalentInsights.Shared.dll
