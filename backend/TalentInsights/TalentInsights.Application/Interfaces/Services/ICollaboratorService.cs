@@ -7,6 +7,8 @@ namespace TalentInsights.Application.Interfaces.Services
 {
     public interface ICollaboratorService
     {
+
+
         public GenericResponse<CollaboratorDTO> Create(CreateCollaboratorRequest model);
         public GenericResponse<CollaboratorDTO> Update(Guid collaboratorId, UpdateCollaboratorRequestcs model);
 
@@ -14,7 +16,7 @@ namespace TalentInsights.Application.Interfaces.Services
 
         public GenericResponse<CollaboratorDTO?> Get(Guid collaboratorId);
 
-        public GenericResponse<bool> Delete(Guid collaborateId);
+        public GenericResponse<bool> Delete(Guid collaboratorId);
 
 
     }

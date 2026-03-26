@@ -31,5 +31,17 @@
         {
             return _data.Remove(key);
         }
+
+        //actualizar colaborador por id
+
+        public T? Update(string key, T data)
+        {
+            if (_data.ContainsKey(key))
+            {
+                _data[key] = data;
+                return data;
+            }
+            return default;
+        }
     }
 }

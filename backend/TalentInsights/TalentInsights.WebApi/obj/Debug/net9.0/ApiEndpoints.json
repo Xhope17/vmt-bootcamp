@@ -37,6 +37,11 @@
         "Name": "GitlabProfile",
         "Type": "System.String",
         "IsRequired": false
+      },
+      {
+        "Name": "FullName",
+        "Type": "System.String",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
@@ -66,13 +71,13 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "model",
-        "Type": "TalentInsights.Application.Models.Requets.Collaborator.UpdateCollaboratorRequestcs",
+        "Name": "id",
+        "Type": "System.Guid",
         "IsRequired": true
       },
       {
-        "Name": "id",
-        "Type": "",
+        "Name": "model",
+        "Type": "TalentInsights.Application.Models.Requets.Collaborator.UpdateCollaboratorRequestcs",
         "IsRequired": true
       }
     ],

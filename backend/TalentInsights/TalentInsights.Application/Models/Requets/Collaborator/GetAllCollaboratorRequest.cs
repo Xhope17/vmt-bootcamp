@@ -7,5 +7,8 @@
         public int? Offset { get; set; }
 
         public string? GitlabProfile { get; set; }
+
+        public string? FullName { get; set; }
+
     }
 }

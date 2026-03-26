@@ -6,10 +6,10 @@ namespace TalentInsights.Application.Models.Requets.Collaborator
     public class ChangePasswordCollaboratorRequest
     {
         [Required(ErrorMessage = ValidationConstants.REQUIRED)]
-        public string currentPassword { get; set; }
+        public string CurrentPassword { get; set; } = null!;
 
         [Required(ErrorMessage = ValidationConstants.REQUIRED)]
-        public string newPassword { get; set; }
+        public string NewPassword { get; set; } = null!;
 
     }
 }

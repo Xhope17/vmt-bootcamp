@@ -11,9 +11,10 @@ namespace TalentInsights.Application.Helpers
             {
                 Data = data,
                 Message = message,
+
             };
 
-            response.Cliente.ToLower();
+            //response.Cliente.ToLower();
 
             return response;
         }

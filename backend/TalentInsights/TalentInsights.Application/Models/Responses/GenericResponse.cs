@@ -10,13 +10,15 @@
         public T Data { get; set; }
 
 
-        public required string Cliente { get; set; } = string.Empty;
+        //public required string Cliente { get; set; } = null!;
+        //public string Cliente { get; set; } = "Talent Insights";
+
 
         //prueba
-        public Z OtroGeneric<Z>(Z data)
-        {
-            return data;
-        }
+        //public Z OtroGeneric<Z>(Z data)
+        //{
+        //    return data;
+        //}
 
     }
 }

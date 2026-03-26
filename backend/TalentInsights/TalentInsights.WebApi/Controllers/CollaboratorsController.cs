@@ -1,14 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TalentInsights.Application.Helpers;
+using TalentInsights.Application.Interfaces.Services;
 using TalentInsights.Application.Models.Requets.Collaborator;
-using TalentInsights.Application.Services;
 
 namespace TalentInsights.WebApi.Controllers
 {
 
     [Route("api/[controller]")]
     [ApiController]
-    public class CollaboratorsController : ControllerBase
+    public class CollaboratorsController(ICollaboratorService collaboratorService) : ControllerBase
     {
 
         //[HttpPost]
@@ -17,21 +17,35 @@ namespace TalentInsights.WebApi.Controllers
         //    return Ok($"Usuario: {model.FullName}, gitlabprofile: {model.GitlabProfile}");
         //}
 
+        //public async Task<IActionResult> Create([FromBody] CreateCollaboratorRequest model)
+        //{
+        //    var rsp = _collaboratorService.Create(model);
+        //    return Ok(rsp);
+        //}
+
+
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateCollaboratorRequest model)
         {
-            var rsp = CollaboratorService
-            return Ok($"Usuario: {model.FullName}, gitlabprofile: {model.GitlabProfile}");
+            var rsp = collaboratorService.Create(model);
+            //return Ok(rsp + $"Usuario: {model.FullName}, gitlabprofile: {model.GitlabProfile}");
+            return Ok(rsp);
         }
 
+
+        //var rsp = _collaboratorService.Get(model.Limit ?? 10, model.Offset ?? 0);
+        //return Ok(rsp);
 
         [HttpGet]
         public async Task<IActionResult> GetAll([FromQuery] GetAllCollaboratorRequest model)
         {
             //$"Todos los usuarios: \n limit: {model.Limit}, outset: {model.Offset}, gitlabprofile: {model.GitlabProfile}
-            List<string> users = ["Usuario 1", "Usuario 2", "Usuario 3"];
+            //List<string> users = ["Usuario 1", "Usuario 2", "Usuario 3"];
 
-            return Ok(ResponseHelper.Create(users));
+            var rsp = collaboratorService.Get(model.Limit ?? 0, model.Offset ?? 0);
+
+
+            return Ok(rsp);
         }
 
         [HttpGet("{id:guid}")]
@@ -39,15 +53,19 @@ namespace TalentInsights.WebApi.Controllers
         {
             //var context = HttpContext;
             //var response = ;
-            var usuario = $"{id}";
+            //var rsp = $"{id}";
+
+            var rsp = collaboratorService.Get(id);
 
 
-            return Ok(ResponseHelper.Create(usuario));
+            return Ok(ResponseHelper.Create(id));
         }
 
         [HttpPut("{id:guid}")]
-        public async Task<IActionResult> Update([FromBody] UpdateCollaboratorRequestcs model)
+        public async Task<IActionResult> Update(Guid id, [FromBody] UpdateCollaboratorRequestcs model)
         {
+            var rsp = collaboratorService.Update(id, model);
+
             return Ok($"Usuario actualizado: \n nombre: {model.FullName}, gitlabprofile: {model.GitlabProfile}, posición: {model.Position}");
         }
 
@@ -60,7 +78,9 @@ namespace TalentInsights.WebApi.Controllers
         [HttpDelete("{id:guid}")]
         public async Task<IActionResult> Delete(Guid id)
         {
-            return Ok($"Usuario eliminado correctamente");
+            var rsp = collaboratorService.Delete(id);
+
+            return Ok($"Usuario eliminado");
         }
 
 
