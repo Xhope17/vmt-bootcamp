@@ -1,3 +1,5 @@
+using TalentInsights.Application.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -5,6 +7,15 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
+
+//services
+builder.Services.AddScoped<ICollaboratorService, CollaboratorService>();
+
+
+//agregar lo de cache de TalentInsights.Shared.Cache<T>
+
+builder.Services.AddSingleton(typeof(TalentInsights.Shared.Cache<>));
+
 
 var app = builder.Build();
 

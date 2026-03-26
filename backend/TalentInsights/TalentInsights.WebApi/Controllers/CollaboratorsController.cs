@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using TalentInsights.Application.Helpers;
 using TalentInsights.Application.Models.Requets.Collaborator;
+using TalentInsights.Application.Services;
 
 namespace TalentInsights.WebApi.Controllers
 {
@@ -9,28 +11,44 @@ namespace TalentInsights.WebApi.Controllers
     public class CollaboratorsController : ControllerBase
     {
 
+        //[HttpPost]
+        //public async Task<IActionResult> Create([FromBody] CreateCollaboratorRequest model)
+        //{
+        //    return Ok($"Usuario: {model.FullName}, gitlabprofile: {model.GitlabProfile}");
+        //}
+
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateCollaboratorRequest model)
         {
-            return Ok($"usuario: {model.FullName}");
+            var rsp = CollaboratorService
+            return Ok($"Usuario: {model.FullName}, gitlabprofile: {model.GitlabProfile}");
         }
+
 
         [HttpGet]
         public async Task<IActionResult> GetAll([FromQuery] GetAllCollaboratorRequest model)
         {
-            return Ok($"Todos los usuarios: limit: {model.Limit}, outset: {model.Offset}, gitlabprofile: {model.GitlabProfile}");
+            //$"Todos los usuarios: \n limit: {model.Limit}, outset: {model.Offset}, gitlabprofile: {model.GitlabProfile}
+            List<string> users = ["Usuario 1", "Usuario 2", "Usuario 3"];
+
+            return Ok(ResponseHelper.Create(users));
         }
 
         [HttpGet("{id:guid}")]
         public async Task<IActionResult> GetById(Guid id)
         {
-            return Ok($"{id}");
+            //var context = HttpContext;
+            //var response = ;
+            var usuario = $"{id}";
+
+
+            return Ok(ResponseHelper.Create(usuario));
         }
 
         [HttpPut("{id:guid}")]
         public async Task<IActionResult> Update([FromBody] UpdateCollaboratorRequestcs model)
         {
-            return Ok("usuario actualizado");
+            return Ok($"Usuario actualizado: \n nombre: {model.FullName}, gitlabprofile: {model.GitlabProfile}, posición: {model.Position}");
         }
 
         [HttpPatch("change-password/{id:guid}")]
@@ -42,7 +60,9 @@ namespace TalentInsights.WebApi.Controllers
         [HttpDelete("{id:guid}")]
         public async Task<IActionResult> Delete(Guid id)
         {
-            return Ok("usuario creado");
+            return Ok($"Usuario eliminado correctamente");
         }
+
+
     }
 }
