@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="PracticaDbContext.Domain/PracticaDbContext.Domain.csproj" />
+  <Project Path="PracticaDbContext.WebApi/PracticaDbContext.WebApi.csproj" />
+</Solution>
