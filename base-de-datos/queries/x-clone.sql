@@ -426,17 +426,26 @@ GO
 
 -- ====================================================
 
-CREATE TABLE email_templates (
-    EmailTemplateId INT          IDENTITY(1,1) NOT NULL,
-    Name            VARCHAR(100) NOT NULL,
-    Subject         VARCHAR(255) NOT NULL,
-    Body            TEXT         NOT NULL,
-    CreateAt        DATETIME2    NOT NULL DEFAULT(SYSUTCDATETIME())
+CREATE TABLE EmailTemplates (
+	EmailTemplateId INT IDENTITY(1, 1) NOT NULL,
+	Name VARCHAR(100) NOT NULL,
+	Subject VARCHAR(255) NOT NULL,
+	Body TEXT NOT NULL,
+	CreatedAt DATETIME2 NOT NULL DEFAULT(SYSUTCDATETIME())
 );
+GO
 
-INSERT INTO email_templates (Name, Subject, Body)
+INSERT INTO EmailTemplates (Name, Subject, Body)
 VALUES
     ('USER_REGISTER',       'Registro de usuario - Xclone',        'Se creó una cuenta con su correo electrónico. Su contraseña es </strong>{{password}}<strong>'),
     ('AUTH_LOGIN_SUCCESS',  'Inicio de sesión exitoso - XClone',   'Se inicó sesión en su cuenta a las <strong>{{datetime}}</strong>'),
-    ('AUTH_LOGIN FAILED',   'Inicio de sesión fallido - XClone',   'Se intentó iniciar sesión en su cuenta, si no fue usted quién realizó esta acción, comuniquese de inmediado con administración');
+    ('AUTH_LOGIN FAILED',   'Inicio de sesión fallido - XClone',   'Se intentó iniciar sesión en su cuenta, si no fue usted quién realizó esta acción, comuniquese de inmediado con administración'),
+	('AUTH_REGISTER_EMAIL_VERIFICATION', 'Verifica tu cuenta - XClone', 'Hola, para continuar con su proceso de registro, necesita validar su correo electrónico haciendo clic en el siguiente <a href="{{url}}">enlace</a>.'),
+	('AUTH_RECOVER_PASSWORD_OTP', 'Código de recuperación de contraseña - XClone', 'Hola, el siguiente código te permitirá restablecer tu contraseña para volver a entrar a tu cuenta: <strong>{{otp}}</strong>. No compartas este código con nadie.');
+
 GO
+
+
+--select * from EmailTemplates
+--select * from Roles
+--select * from [User]
