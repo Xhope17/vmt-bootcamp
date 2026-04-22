@@ -413,16 +413,6 @@ JOIN   Permissions p ON p.Code IN (
 WHERE  r.Name = 'User';
 GO
 
--- ============================================================
---  ÍNDICES
--- ============================================================
-CREATE INDEX IX_RolePermissions_PermissionId ON RolePermissions (PermissionId);
-CREATE INDEX IX_UserRoles_RoleId             ON UserRoles (RoleId);
-CREATE INDEX IX_UserRoles_AssignedBy         ON UserRoles (AssignedBy);
-CREATE INDEX IX_UserHistory_UserId           ON UserHistory (UserId);
-CREATE INDEX IX_UserHistory_EntityType       ON UserHistory (EntityType, EntityId);
-CREATE INDEX IX_UserHistory_PerformedBy      ON UserHistory (PerformedBy);
-GO
 
 -- ====================================================
 
@@ -446,6 +436,113 @@ VALUES
 GO
 
 
---select * from EmailTemplates
---select * from Roles
---select * from [User]
+-- ============================================================
+--  TABLA: Menus
+-- ============================================================
+CREATE TABLE Menus (
+    Id        UNIQUEIDENTIFIER NOT NULL DEFAULT NEWID(),
+    Code      NVARCHAR(100)    NOT NULL,
+    Name      NVARCHAR(150)    NOT NULL,
+    Path      NVARCHAR(300)    NOT NULL,
+    IconName  NVARCHAR(100)    NOT NULL,
+    ParentId  UNIQUEIDENTIFIER NULL,
+    SortOrder INT              NOT NULL DEFAULT 0,
+    IsVisible BIT              NOT NULL DEFAULT 1,
+    IsActive  BIT              NOT NULL DEFAULT 1,
+    CreatedAt DATETIME2        NOT NULL DEFAULT SYSUTCDATETIME(),
+    UpdatedAt DATETIME2        NOT NULL DEFAULT SYSUTCDATETIME(),
+
+    CONSTRAINT PK_Menus          PRIMARY KEY (Id),
+    CONSTRAINT UQ_Menus_Code     UNIQUE (Code),
+    CONSTRAINT FK_Menus_ParentId FOREIGN KEY (ParentId) REFERENCES Menus (Id)
+);
+GO
+
+-- ============================================================
+--  TABLA: MenuPermissions (N:M Menu <-> Permission)
+--  Define qué permisos son necesarios para ver/acceder a un ítem de menú.
+--  Los permisos del usuario se derivan de sus roles asignados.
+-- ============================================================
+CREATE TABLE MenuPermissions (
+    MenuId       UNIQUEIDENTIFIER NOT NULL,
+    PermissionId UNIQUEIDENTIFIER NOT NULL,
+    -- ALL = el usuario debe tener TODOS los permisos del menú para verlo
+    -- ANY = basta con tener AL MENOS UNO para verlo
+    MatchMode    NVARCHAR(10)     NOT NULL DEFAULT 'ANY',
+
+    CONSTRAINT PK_MenuPermissions            PRIMARY KEY (MenuId, PermissionId),
+    CONSTRAINT FK_MenuPermissions_Menu       FOREIGN KEY (MenuId)       REFERENCES Menus (Id)       ON DELETE CASCADE,
+    CONSTRAINT FK_MenuPermissions_Permission FOREIGN KEY (PermissionId) REFERENCES Permissions (Id) ON DELETE CASCADE,
+    CONSTRAINT CK_MenuPermissions_MatchMode  CHECK (MatchMode IN ('ANY', 'ALL'))
+);
+GO
+
+-- ============================================================
+--  SEED: Menús del sistema XClone
+-- ============================================================
+DECLARE @IdHome          UNIQUEIDENTIFIER = NEWID();
+DECLARE @IdExplore       UNIQUEIDENTIFIER = NEWID();
+DECLARE @IdNotifications UNIQUEIDENTIFIER = NEWID();
+DECLARE @IdMessages      UNIQUEIDENTIFIER = NEWID();
+DECLARE @IdCommunities   UNIQUEIDENTIFIER = NEWID();
+DECLARE @IdCommList      UNIQUEIDENTIFIER = NEWID();
+DECLARE @IdCommMembers   UNIQUEIDENTIFIER = NEWID();
+DECLARE @IdProfile       UNIQUEIDENTIFIER = NEWID();
+DECLARE @IdAdmin         UNIQUEIDENTIFIER = NEWID();
+DECLARE @IdAdminUsers    UNIQUEIDENTIFIER = NEWID();
+DECLARE @IdAdminContent  UNIQUEIDENTIFIER = NEWID();
+
+INSERT INTO Menus (Id, Code, Name, Path, IconName, ParentId, SortOrder, IsVisible, IsActive)
+VALUES
+    -- Menús raíz (visibles para todos los usuarios)
+    (@IdHome,          'home',                  'Inicio',           '/home',                    'home',           NULL,            1,  1, 1),
+    (@IdExplore,       'explore',               'Explorar',         '/explore',                 'search',         NULL,            2,  1, 1),
+    (@IdNotifications, 'notifications',         'Notificaciones',   '/notifications',           'bell',           NULL,            3,  1, 1),
+    (@IdMessages,      'messages',              'Mensajes',         '/messages',                'envelope',       NULL,            4,  1, 1),
+    (@IdCommunities,   'communities',           'Comunidades',      '/communities',             'users-group',    NULL,            5,  1, 1),
+    (@IdProfile,       'profile',               'Mi Perfil',        '/profile',                 'user-circle',    NULL,            6,  1, 1),
+    -- Submenús de Comunidades
+    (@IdCommList,      'communities.list',      'Mis Comunidades',  '/communities/list',        'list',           @IdCommunities,  1,  1, 1),
+    (@IdCommMembers,   'communities.members',   'Miembros',         '/communities/members',     'users',          @IdCommunities,  2,  1, 1),
+    -- Menú de administración (solo Admin y Moderator)
+    (@IdAdmin,         'admin',                 'Administración',   '/admin',                   'shield',         NULL,            7,  1, 1),
+    (@IdAdminUsers,    'admin.users',           'Usuarios',         '/admin/users',             'user-cog',       @IdAdmin,        1,  1, 1),
+    (@IdAdminContent,  'admin.content',         'Contenido',        '/admin/content',           'flag',           @IdAdmin,        2,  1, 1);
+GO
+
+-- ============================================================
+--  SEED: Relación Menús <-> Permisos
+-- ============================================================
+INSERT INTO MenuPermissions (MenuId, PermissionId, MatchMode)
+SELECT m.Id, p.Id, 'ANY'
+FROM   Menus m
+CROSS JOIN Permissions p
+WHERE
+    -- Mensajes: requiere poder enviar o eliminar mensajes
+    (m.Code = 'messages'            AND p.Code IN ('MESSAGES/SEND', 'MESSAGES/DELETE_OWN'))
+    -- Comunidades: requiere poder crear comunidades
+    OR (m.Code = 'communities.list'   AND p.Code = 'COMMUNITIES/CREATE')
+    -- Miembros de comunidad: requiere poder gestionar miembros (Owner/Moderator de comunidad)
+    OR (m.Code = 'communities.members' AND p.Code = 'COMMUNITIES/CREATE')
+    -- Panel de admin: requiere al menos un permiso de gestión de usuarios o contenido
+    OR (m.Code = 'admin'              AND p.Code IN ('USERS/DISABLE', 'USERS/VERIFY', 'POSTS/DELETE_ANY', 'POSTS/MARK_SENSITIVE'))
+    -- Gestión de usuarios: suspender o verificar cuentas
+    OR (m.Code = 'admin.users'        AND p.Code IN ('USERS/DISABLE', 'USERS/VERIFY', 'USERS/UPDATE', 'USERS/CREATE'))
+    -- Gestión de contenido: moderar posts, replies y comunidades
+    OR (m.Code = 'admin.content'      AND p.Code IN ('POSTS/DELETE_ANY', 'POSTS/MARK_SENSITIVE', 'REPLIES/DELETE_ANY', 'COMMUNITIES/DELETE_ANY'));
+GO
+
+
+-- ============================================================
+--  ÍNDICES
+-- ============================================================
+CREATE INDEX IX_RolePermissions_PermissionId ON RolePermissions (PermissionId);
+CREATE INDEX IX_UserRoles_RoleId             ON UserRoles (RoleId);
+CREATE INDEX IX_UserRoles_AssignedBy         ON UserRoles (AssignedBy);
+CREATE INDEX IX_UserHistory_UserId           ON UserHistory (UserId);
+CREATE INDEX IX_UserHistory_EntityType       ON UserHistory (EntityType, EntityId);
+CREATE INDEX IX_UserHistory_PerformedBy      ON UserHistory (PerformedBy);
+CREATE INDEX IX_Menus_ParentId              ON Menus (ParentId);
+CREATE INDEX IX_Menus_SortOrder             ON Menus (SortOrder);
+CREATE INDEX IX_MenuPermissions_PermissionId ON MenuPermissions (PermissionId);
+GO
