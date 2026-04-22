@@ -1,0 +1,6 @@
+@Reportes_HostAddress = http://localhost:5103
+
+GET {{Reportes_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
