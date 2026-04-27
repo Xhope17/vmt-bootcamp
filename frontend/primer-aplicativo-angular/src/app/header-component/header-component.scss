@@ -1,0 +1,58 @@
+$bg-dark: #0f172a;        // Azul marino muy oscuro
+$text-light: #f8fafc;    // Blanco grisáceo
+$accent: #3b82f6;        // Azul brillante
+
+.header {
+  background-color: $bg-dark;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  font-family: 'Inter', sans-serif;
+
+  .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 2rem;
+    max-width: 1440px;
+    margin: 0 auto;
+
+    @media (max-width: 640px) {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1rem;
+    }
+  }
+
+  .logo {
+    margin: 0;
+    font-size: 1.4rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    color: $text-light;
+    /* Degradado sutil en el logo para que resalte en el fondo oscuro */
+    background: linear-gradient(to right, #60a5fa, #a855f7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+
+    a {
+      text-decoration: none;
+      color: #94a3b8; // Gris apagado por defecto
+      font-weight: 500;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+
+      &:hover {
+        color: $text-light;
+        text-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+      }
+    }
+  }
+}
