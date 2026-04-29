@@ -1,0 +1,21 @@
+<header class="header bg-gray-600 text-white p-4 max-lg:px-2">
+  <div class="">
+    <div class="flex mt-4">
+      <div class="flex flex-wrap-reverse gap-4 items-center px-4">
+        <h1 class="titulo text-white text-2xl font-bold">Portal Estudiantil</h1>
+        @if (state) {
+          <p>-</p>
+          <h1 class="text-blue-500 font-bold text-2xl">{{ name }}</h1>
+        }
+      </div>
+
+      <div class="ml-auto flex items-left gap-4">
+        @if (state) {
+          <button class="bg-red-500" (click)="Connection()">Desconectar</button>
+        } @else {
+          <button class="bg-green-500" (click)="Connection()">Conectar</button>
+        }
+      </div>
+    </div>
+  </div>
+</header>

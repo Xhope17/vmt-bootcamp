@@ -1,0 +1,49 @@
+<div>
+  <!-- Busqueda-->
+  <div class="px-4 py-2">
+    <h1 class="text-3xl font-bold">Búsqueda:</h1>
+    <input
+      type="text"
+      [(ngModel)]="busqueda"
+      placeholder="Nombre de la materia..."
+      class="border border-gray-300 rounded px-4 py-2 mt-2 w-full"
+    />
+    <p>
+      Buscando: <strong>{{ busqueda }}</strong>
+    </p>
+  </div>
+
+  <!-- materias-->
+  <div class="materias-lista mt-4 px-4">
+    <div class="materia-item border border-gray-300 rounded p-4 mb-2">
+      @for (materia of buscarMateria; track $index) {
+        <div>
+          <h2 class="text-xl font-bold">{{ materia.nombre }}</h2>
+          <p>Créditos: {{ materia.creditos }}</p>
+          <p>Aprobada: {{ materia.aprobada ? 'Sí' : 'No' }}</p>
+        </div>
+      } @empty {
+        <p class="text-red-500 text-center px-4 bg-red-50">No tienes materias registradas</p>
+      }
+    </div>
+
+    <!-- barra de progreso -->
+    <div class="px-4 py-2 mt-4">
+      <h3>Créditos: {{ creditos }} / 120</h3>
+
+      <div>
+        <progress [value]="creditos" [max]="120" class="w-full bg"></progress>
+      </div>
+    </div>
+
+    <!-- Botones de crédito -->
+    <div class="px-4 py-2 mt-4 flex gap-4">
+      <button (click)="restarCreditos()" [disabled]="creditos === 0" class="bg-red-500">
+        - 10 Créditos
+      </button>
+      <button (click)="sumarCreditos()" [disabled]="creditos === 120" class="bg-blue-600">
+        + 10 Créditos
+      </button>
+    </div>
+  </div>
+</div>
