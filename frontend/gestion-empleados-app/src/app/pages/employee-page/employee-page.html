@@ -1,0 +1,72 @@
+<section class="">
+  <h1 class="text-4xl flex justify-center font-bold">Empleados</h1>
+
+  <!-- Búsqueda -->
+  <div class="px-4 py-2">
+    <h1 class="text-3xl font-bold">Búsqueda:</h1>
+    <div class="flex flex-row px-4 py-2 gap-4 items-center">
+      <input
+        type="text"
+        (keyup.enter)="buscarEmpleado(search)"
+        [(ngModel)]="search"
+        placeholder="Nombre del empleado..."
+        class="border border-gray-300 rounded px-4 py-2 mt-2 w-full"
+      />
+      <button
+        (click)="buscarEmpleado(search)"
+        class="bg-blue-600 border-blue-600 text-white font-bold py-2 px-4 rounded"
+      >
+        Buscar
+      </button>
+    </div>
+
+    <p>
+      Buscando: <strong>{{ search }}</strong>
+    </p>
+  </div>
+
+  <!-- Empleados encontrados -->
+  @if (!search || !employeeFound) {
+    <div class="px-4 py-2">
+      <h1 class="text-3xl font-bold">Resultados:</h1>
+      <p>No se encontraron empleados.</p>
+    </div>
+  } @else {
+    <div class="p-4 border border-gray-300 rounded-lg shadow-sm">
+      <h2 class="text-xl font-bold">{{ employeeFound.name }}</h2>
+      <p class="text-gray-600">{{ employeeFound.email }}</p>
+      <p class="text-gray-600 mt-2">
+        <strong>Departamento:</strong> {{ employeeFound.department }}
+      </p>
+      <p class="text-gray-600"><strong>Cargo:</strong> {{ employeeFound.position }}</p>
+    </div>
+  }
+
+  <!-- lista de empleados -->
+  <section>
+    <div>
+      <!-- quiero que quede el centro un cuadro con una barra para subir y bajar que no ocupe todo el espacio de los lados -->
+      <div class="max-w-4xl mx-auto p-4 border rounded-lg shadow-md mt-6">
+        <!-- <p>{{ngOnInit()}}</p> -->
+        <h2 class="font-bold py-4">Lista de empleados</h2>
+        @if (loading()) {
+          <div>Cargando...</div>
+        }
+        @if (error()) {
+          <div>{{ error() }}</div>
+        }
+        @if (!loading() && !error() && employees().length > 0) {
+          <ul>
+            @for (employee of employees(); track employee.id) {
+              <li>
+                <strong>{{ employee.name }}</strong> — {{ employee.email }}
+              </li>
+            }
+          </ul>
+        } @else if (!loading() && !error()) {
+          <div>No hay empleados para mostrar.</div>
+        }
+      </div>
+    </div>
+  </section>
+</section>
