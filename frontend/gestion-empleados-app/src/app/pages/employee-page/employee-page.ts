@@ -48,4 +48,10 @@ export class EmployeePage implements OnInit {
       error: (err) => {},
     });
   }
+
+  agregarEmpleado() {
+    // Aquí puedes implementar la lógica para agregar un nuevo empleado
+    // Por ejemplo, podrías abrir un formulario modal para ingresar los datos del nuevo empleado
+    console.log('Agregar nuevo empleado');
+  }
 }

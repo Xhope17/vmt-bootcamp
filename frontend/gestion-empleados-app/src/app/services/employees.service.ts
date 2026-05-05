@@ -19,4 +19,8 @@ export class EmployeesService {
   getById(id: string): Observable<Employee> {
     return this._http.get<Employee>(`${this.apiUrl}/employees/${id}`);
   }
+
+  addEmployee(employee: Partial<Employee>): Observable<Employee> {
+    return this._http.post<Employee>(`${this.apiUrl}/employees`, employee);
+  }
 }
