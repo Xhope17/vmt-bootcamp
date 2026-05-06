@@ -1,5 +1,5 @@
 <section class="">
-  <h1 class="text-4xl flex justify-center font-bold">Departamentos</h1>
+  <h1 class="text-4xl flex justify-center font-bold text-primary">Departamentos</h1>
 
   <!-- Búsqueda -->
   <div class="px-4 py-2">
@@ -9,6 +9,7 @@
         type="text"
         (keyup.enter)="buscarDepartamento(search)"
         [(ngModel)]="search"
+        (ngModelChange)="departmentFound = null"
         placeholder="Nombre del departamento..."
         class="border border-gray-300 rounded px-4 py-2 mt-2 w-full"
       />
@@ -26,47 +27,129 @@
   </div>
 
   <!-- departamentos encontrados -->
+  <h1 class="px-4 py-2 text-3xl font-bold">Resultados:</h1>
   @if (!search || !departmentFound) {
     <div class="px-4 py-2">
-      <h1 class="text-3xl font-bold">Resultados:</h1>
       <p>No se encontraron resultados.</p>
     </div>
   } @else {
     <div class="p-4 border border-gray-300 rounded-lg shadow-sm">
       <h2 class="text-xl font-bold">{{ departmentFound.name }}</h2>
       <p class="text-gray-600">{{ departmentFound.description }}</p>
-      <p class="text-gray-600 mt-2">
-        <strong>Departamento:</strong> {{ departmentFound.id }}
-      </p>
+      <p class="text-gray-600 mt-2"><strong>Departamento:</strong> {{ departmentFound.id }}</p>
       <p class="text-gray-600"><strong>Gerente:</strong> {{ departmentFound.managerName }}</p>
     </div>
   }
 
   <!-- lista de departamentos -->
-  <section>
-    <div>
-      <!-- quiero que quede el centro un cuadro con una barra para subir y bajar que no ocupe todo el espacio de los lados -->
-      <div class="max-w-4xl mx-auto p-4 border rounded-lg shadow-md mt-6">
-        <!-- <p>{{ngOnInit()}}</p> -->
-        <h2 class="font-bold py-4">Lista de departamentos</h2>
-        @if (loading()) {
-          <div>Cargando...</div>
-        }
-        @if (error()) {
-          <div>{{ error() }}</div>
-        }
-        @if (!loading() && !error() && department().length > 0) {
-          <ul>
+  <section class="p-4">
+    <div class="max-w-4xl mx-auto p-6 border rounded-2xl shadow-2xl mt-6 text-gray-200">
+      <!-- class="max-w-4xl mx-auto p-6 bg-slate-800 border border-slate-700 rounded-2xl shadow-2xl mt-6 text-gray-200" -->
+      <h2 class="text-2xl font-bold pb-4 border-b border-slate-700 mb-4 text-white">
+        Lista de Empleados
+      </h2>
+      <button
+        (click)="agregarDepartamento()"
+        class="bg-green-600 text-white font-bold py-4 px-4 mb-4 rounded"
+      >
+        Agregar Departamento
+      </button>
+
+      <!--  -->
+      @if (loading()) {
+        <div class="text-blue-400 font-semibold animate-pulse text-center py-6">
+          Cargando departamentos...
+        </div>
+      }
+
+      <!--  -->
+      @if (error()) {
+        <div
+          class="bg-red-900/50 border border-red-800 text-red-200 p-4 rounded-lg text-center mb-4"
+        >
+          {{ error() }}
+        </div>
+      }
+
+      <!--  -->
+      @if (!loading() && !error() && department().length > 0) {
+        <div
+          class="max-h-200 overflow-y-auto pr-2"
+          style="scrollbar-width: thin; scrollbar-color: #475569 transparent"
+        >
+          <ul class="flex flex-col gap-3">
             @for (dept of department(); track dept.id) {
-              <li>
-                <strong>{{ dept.name }}</strong> — {{ dept.description }}
+              <li
+                class="flex items-center gap-4 p-4 bg-slate-700/40 hover:bg-slate-700/80 border border-slate-600/50 rounded-xl transition-all duration-200"
+              >
+                <p>{{ dept.id }}</p>
+                <div class="flex-1 min-w-0">
+                  <div class="flex flex-col justify-between mb-1">
+                    <!-- nombre -->
+                    <h3 class="text-lg font-bold text-white truncate">
+                      {{ dept.name }}
+                    </h3>
+                  </div>
+
+                  <!-- descripción -->
+                  <p class="text-sm font-medium text-blue-300 mb-2 truncate">
+                    {{ dept.description }}
+                  </p>
+
+                  <div class="flex flex-col sm:flex-row sm:gap-4 text-sm text-gray-400">
+                    <!-- nombre gerente -->
+                    <span class="flex items-center gap-1.5 truncate">
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M3 8l7.53 4.819a1 1 0 001.04 0L19.5 8M3 8v8a2 2 0 002 2h14a2 2 0 002-2V8M3 8a2 2 0 012-2h14a2 2 0 012 2"
+                        ></path>
+                      </svg>
+                      {{ dept.managerName }}
+                    </span>
+
+                    <!-- fecha -->
+                    <span class="flex items-center gap-1.5 truncate mt-1 sm:mt-0">
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          algo
+                          de
+                          fecha
+                          d="M5.673 0a.7.7 0 0 1 .7.7v1.309h7.517v-1.3a.7.7 0 0 1 1.4 0v1.3H18a2 2 0 0 1 2 1.999v13.993A2 2 0 0 1 18 20H2a2 2 0 0 1-2-1.999V4.008a2 2 0 0 1 2-1.999h2.973V.699a.7.7 0 0 1 .7-.699M1.4 7.742v10.259a.6.6 0 0 0 .6.6h16a.6.6 0 0 0 .6-.6V7.756zm5.267 6.877v1.666H5v-1.666zm4.166 0v1.666H9.167v-1.666zm4.167 0v1.666h-1.667v-1.666zm-8.333-3.977v1.666H5v-1.666zm4.166 0v1.666H9.167v-1.666zm4.167 0v1.666h-1.667v-1.666zM4.973 3.408H2a.6.6 0 0 0-.6.6v2.335l17.2.014V4.008a.6.6 0 0 0-.6-.6h-2.71v.929a.7.7 0 0 1-1.4 0v-.929H6.373v.92a.7.7 0 0 1-1.4 0z"
+                        ></path>
+                      </svg>
+                      {{ dept.createdAt | date: 'short' }}
+                    </span>
+                  </div>
+                </div>
+                <button
+                  (click)="actualizarDepartamento(dept.id)"
+                  class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg transition-colors duration-200"
+                >
+                  Actualizar
+                </button>
+                <button
+                  (click)="eliminarDepartamento(dept.id)"
+                  class="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-lg transition-colors duration-200"
+                >
+                  Eliminar
+                </button>
               </li>
             }
           </ul>
-        } @else if (!loading() && !error()) {
-          <div>No hay departamentos para mostrar.</div>
-        }
-      </div>
+        </div>
+      } @else if (!loading() && !error()) {
+        <div
+          class="text-center text-gray-400 italic py-8 border border-dashed border-slate-600 rounded-lg"
+        >
+          No hay departamentos para mostrar.
+        </div>
+      }
     </div>
   </section>
 </section>

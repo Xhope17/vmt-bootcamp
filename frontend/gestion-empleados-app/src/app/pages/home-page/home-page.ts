@@ -6,7 +6,7 @@ import { EmployeePage } from '../employee-page/employee-page';
 
 @Component({
   selector: 'app-home-page',
-  imports: [FormsModule, CommonModule, EmployeePage, DepartmentsPage],
+  imports: [FormsModule, CommonModule],
   templateUrl: './home-page.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
