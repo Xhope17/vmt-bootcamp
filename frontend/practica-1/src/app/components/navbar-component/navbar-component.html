@@ -1,0 +1,26 @@
+<section class="flex flex-col items-center">
+  <div class="navbar bg-base-100 shadow-sm mb-6 rounded-box items-center">
+    <div class="flex flex-row items-center gap-4 mb-2 mt-2">
+      <a routerLink="/" class="btn btn-ghost text-xl">
+        Gestión de clínica<span class="text-primary"></span>
+      </a>
+
+      <ul class="menu menu-horizontal px-1 gap-1">
+        <li>
+          <a
+            routerLink="/"
+            routerLinkActive="text-primary font-bold"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Inicio</a
+          >
+        </li>
+        <li>
+          <a routerLink="/patients" routerLinkActive="text-primary font-bold">Pacientes</a>
+        </li>
+        <li>
+          <a routerLink="/doctors" routerLinkActive="text-primary font-bold">Doctores</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>

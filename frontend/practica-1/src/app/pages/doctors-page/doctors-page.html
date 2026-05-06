@@ -1,0 +1,106 @@
+<section>
+  <h1 class="text-4xl flex justify-center font-bold text-secondary">Doctores</h1>
+
+  <!-- Búsqueda -->
+  <div class="px-4 py-2">
+    <h1 class="text-3xl font-bold">Búsqueda:</h1>
+    <!-- quiero que lo oriente a la izquierda-->
+    <div class="flex flex-row px-4 py-2 gap-4 items-baseline-last justify-start">
+      <input
+        type="text"
+        (keyup.enter)="buscarDoctor(search)"
+        [(ngModel)]="search"
+        (ngModelChange)="doctorFound = null"
+        placeholder="Nombre del doctor..."
+        class="border border-gray-300 rounded px-4 py-2 mt-2 w-full"
+      />
+      <button
+        (click)="buscarDoctor(search)"
+        class="bg-blue-600 border-blue-600 text-white font-bold py-2 px-4 rounded"
+      >
+        Buscar
+      </button>
+    </div>
+
+    <p>
+      Buscando: <strong>{{ search }}</strong>
+    </p>
+  </div>
+
+  <!-- Empleados encontrados -->
+  <h1 class="px-4 py-2 text-3xl font-bold">Resultados:</h1>
+  @if (!search || !doctorFound) {
+    <div class="px-4 py-2">
+      <p>No se encontraron doctores.</p>
+    </div>
+  } @else {
+    <div class="p-4 border border-gray-300 rounded-lg shadow-sm">
+      <p class="text-2xl font-bold text-accent">Usuario encontrado</p>
+      <p class="text-white mb-2 mt-2"><strong>Id:</strong> {{ doctorFound.id }}</p>
+      <h2 class="text-xl font-bold">{{ doctorFound.name }} {{ doctorFound.lastName }}</h2>
+      <p class="text-white mb-2 mt-2"><strong>Género:</strong> {{ doctorFound.gender }}</p>
+      <p class="text-white mb-2 mt-2"><strong>Dirección:</strong> {{ doctorFound.address }}</p>
+    </div>
+  }
+
+  <!-- lista de doctores -->
+  <section class="p-4">
+    <div class="text-2xl font-bold pb-4 border-b border-slate-700 mb-4 text-white">
+      Lista de doctores
+    </div>
+    <button
+      (click)="agregarDoctor()"
+      class="btn btn-accent text-white font-bold py-4 px-4 mb-4 rounded"
+    >
+      Agregar doctor
+    </button>
+
+    <!--  -->
+    @if (loading()) {
+      <div class="text-blue-400 font-semibold animate-pulse text-center py-6">
+        Cargando doctores...
+      </div>
+    }
+
+    @if (error()) {
+      <div class="text-red-400 font-semibold text-center py-6">Error: {{ error() }}</div>
+    }
+
+    <!-- si no hay problemas se muestra laLista de doctores -->
+
+    @if (!loading() && !error() && doctors().length === 0) {
+      <div class="text-gray-400 font-semibold text-center py-6">No hay doctores registrados.</div>
+    }
+
+    @if (!loading() && !error() && doctors().length > 0) {
+      <div
+        class="max-h-200 overflow-y-auto pr-2 flex flex-row flex-wrap gap-4 justify-around"
+        style="scrollbar-width: thin; scrollbar-color: #475569 transparent"
+      >
+        @for (d of doctors(); track d.id) {
+          <div class="flex justify-center" style="width: 250px">
+            <div class="card bg-base-200 w-60 shadow-sm rounded-box">
+              <!-- <figure class="px-10 pt-10">
+                <img src="{{ d.avatar }}" alt="avatar" class="rounded-xl" />
+              </figure> -->
+              <div class="card-body items-center text-center">
+                <h2 class="card-title">Doctor #{{ d.id }}</h2>
+                <h2 class="card-title">{{ d.name }} {{ d.lastName }}</h2>
+                <p>
+                  Género: {{ d.gender }} <br />
+                  Dirección: {{ d.address }}
+                </p>
+                <div class="card-actions">
+                  <button class="btn btn-primary" (click)="actualizarDoctor(d.id)">
+                    Actualizar
+                  </button>
+                  <button class="btn btn-warning" (click)="eliminarDoctor(d.id)">Eliminar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    }
+  </section>
+</section>
