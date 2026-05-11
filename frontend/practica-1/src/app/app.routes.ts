@@ -12,6 +12,7 @@ export const routes: Routes = [
       {
         path: '',
         component: HomePage,
+        pathMatch: 'full', //pathMatch  obliga a que se escriba la ruta ta y como esta definida
       },
       { path: 'patients', component: PatientsPage },
       { path: 'doctors', component: DoctorsPage },

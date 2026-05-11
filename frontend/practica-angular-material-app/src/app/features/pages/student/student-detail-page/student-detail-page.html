@@ -1,0 +1,7 @@
+<!-- boton para volver a la ruta anterior -->
+<button mat-raised-button color="primary" routerLink="/students" class="btn bg-blue-500 px-4 py-2 ">Volver</button>
+<h1 class="flex items-center text-center">Detalles del Estudiante</h1>
+<h2>{{ student()?.id }}</h2>
+<h2>{{ student()?.name }}</h2>
+<img src="{{ student()?.avatar }}" alt="avatar" class="rounded-xl" />
+<p>{{ student()?.email }}</p>
