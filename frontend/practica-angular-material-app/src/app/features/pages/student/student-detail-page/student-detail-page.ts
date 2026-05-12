@@ -1,21 +1,32 @@
 import { ChangeDetectionStrategy, Component, inject, OnInit, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { StudentsService } from '../../../services/students.service';
+import { RouterModule } from '@angular/router';
+import { MatButtonModule } from '@angular/material/button';
+import { Location } from '@angular/common';
+import { Student } from '../../../interfaces/student';
+
 
 @Component({
   selector: 'app-student-detail-page',
-  imports: [],
+  imports: [RouterModule, MatButtonModule],
   templateUrl: './student-detail-page.html',
   styleUrl: './student-detail-page.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class StudentDetailPage implements OnInit {
   private _route = inject(ActivatedRoute);
-  private _studentsService = inject(StudentsService); // Usa el nombre de tu servicio
+  private _studentsService = inject(StudentsService);
 
-  student = signal<any | null>(null); // Cambia "any" por tu interfaz Student
+  student = signal<Student | null>(null);
   loading = signal(true);
   error = signal('');
+
+  constructor(private location: Location) {}
+
+  backClicked() {
+    this.location.back();
+  }
 
   ngOnInit() {
     const idParam = this._route.snapshot.paramMap.get('id');

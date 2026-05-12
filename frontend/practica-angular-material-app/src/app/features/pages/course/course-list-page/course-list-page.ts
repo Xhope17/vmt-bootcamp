@@ -3,10 +3,11 @@ import { Course } from '../../../interfaces/course';
 import { CoursesService } from '../../../services/courses.service';
 import { RouterLink } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-course-list-page',
-  imports: [MatCardModule, RouterLink],
+  imports: [MatCardModule, RouterLink, MatProgressSpinnerModule],
   templateUrl: './course-list-page.html',
   styleUrl: './course-list-page.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -5,7 +5,12 @@
 
   <!--  -->
   @if (loading()) {
-    <div class="text-blue-400 font-semibold animate-pulse text-center py-6">Cargando cursos...</div>
+    <div
+      class="text-blue-400 font-semibold animate-pulse text-center py-6 flex flex-col items-center gap-4"
+    >
+      <mat-spinner></mat-spinner>
+      Cargando cursos...
+    </div>
   }
 
   @if (error()) {
@@ -18,7 +23,7 @@
 
   @if (!loading() && !error() && courses().length > 0) {
     <div
-      class="max-h-[800px] overflow-y-auto pr-2 flex flex-wrap gap-6 justify-center sm:justify-start"
+      class="max-h-200 overflow-y-auto pr-2 flex flex-row flex-wrap gap-4 justify-around"
       style="scrollbar-width: thin; scrollbar-color: #475569 transparent"
     >
       @for (p of courses(); track p.id) {

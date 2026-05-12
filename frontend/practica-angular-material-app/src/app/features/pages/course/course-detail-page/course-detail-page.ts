@@ -1,20 +1,30 @@
 import { ChangeDetectionStrategy, Component, inject, OnInit, signal } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CoursesService } from '../../../services/courses.service';
+import { Location } from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
+import { Course } from '../../../interfaces/course';
 
 @Component({
   selector: 'app-course-detail-page',
-  imports: [],
+  imports: [RouterModule, MatButtonModule],
   templateUrl: './course-detail-page.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CourseDetailPage implements OnInit {
   private _route = inject(ActivatedRoute);
-  private _coursesService = inject(CoursesService); // Usa el nombre de tu servicio
+  private _coursesService = inject(CoursesService);
 
-  course = signal<any | null>(null); // Cambia "any" por tu interfaz CourseDetailPage
+  course = signal<Course | null>(null);
   loading = signal(true);
   error = signal('');
+
+  //método para volver a la pagina anterior
+  constructor(private location: Location) {}
+
+  backClicked() {
+    this.location.back();
+  }
 
   ngOnInit() {
     const idParam = this._route.snapshot.paramMap.get('id');

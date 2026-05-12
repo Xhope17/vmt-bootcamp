@@ -1,7 +1,6 @@
 <!-- boton para volver a la ruta anterior -->
-<button mat-raised-button color="primary" routerLink="/courses" class="btn bg-blue-500 px-4 py-2">
-  Volver
-</button>
+<button mat-raised-button color="primary" (click)="backClicked()">Volver</button>
+
 <h1 class="flex items-center text-center justify-center">Detalles del Curso</h1>
 <h2>ID: {{ course()?.id }}</h2>
 <h2>Nombre: {{ course()?.name }}</h2>

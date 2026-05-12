@@ -11,7 +11,10 @@
 
   <!--  -->
   @if (loading()) {
-    <div class="text-blue-400 font-semibold animate-pulse text-center py-6">
+    <div
+      class="text-blue-400 font-semibold animate-pulse text-center py-6 flex flex-col items-center gap-4"
+    >
+      <mat-spinner></mat-spinner>
       Cargando estudiantes...
     </div>
   }
@@ -20,15 +23,13 @@
     <div class="text-red-400 font-semibold text-center py-6">Error: {{ error() }}</div>
   }
 
-  <!-- si no hay problemas se muestra laLista de estudiantes -->
-
   @if (!loading() && !error() && students().length === 0) {
     <div class="text-gray-400 font-semibold text-center py-6">No hay estudiantes registrados.</div>
   }
 
   @if (!loading() && !error() && students().length > 0) {
     <div
-      class="max-h-[800px] overflow-y-auto pr-2 flex flex-wrap gap-6 justify-center sm:justify-start"
+      class="max-h-200 overflow-y-auto pr-2 flex flex-row flex-wrap gap-4 justify-around"
       style="scrollbar-width: thin; scrollbar-color: #475569 transparent"
     >
       @for (p of students(); track p.id) {
