@@ -1,0 +1,37 @@
+<form [formGroup]="studentForm" class="flex flex-col gap-3 pt-4">
+  @if (data?.action == 'delete') {
+    <p>
+      ¿Estás seguro de que deseas eliminar este estudiante? {{ data?.name }}
+      <strong>{{ data?.id }}</strong>
+    </p>
+  } @else {
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>Nombre completo</mat-label>
+      <input matInput formControlName="name" placeholder="Ej. Bryan Mora" />
+      @if (studentForm.get('name')?.invalid && studentForm.get('name')?.touched) {
+        <mat-error>El nombre es requerido</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>Correo electrónico</mat-label>
+      <input matInput formControlName="email" type="email" placeholder="ejemplo@ug.edu.ec" />
+      @if (studentForm.get('email')?.invalid && studentForm.get('email')?.touched) {
+        <mat-error>Ingresa un correo válido</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>URL del Avatar</mat-label>
+      <input matInput formControlName="avatar" placeholder="https://ejemplo.com/foto.jpg" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>ID del Curso</mat-label>
+      <input matInput formControlName="courseId" placeholder="Ej. 1" />
+      @if (studentForm.get('courseId')?.invalid && studentForm.get('courseId')?.touched) {
+        <mat-error>El curso es requerido</mat-error>
+      }
+    </mat-form-field>
+  }
+</form>

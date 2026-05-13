@@ -40,6 +40,8 @@ export class StudentDetailPage implements OnInit {
   }
 
   buscarEstudiante(id: string) {
+    this.loading.set(true);
+    this.error.set('');
     this._studentsService.getById(id).subscribe({
       next: (data) => {
         this.student.set(data);

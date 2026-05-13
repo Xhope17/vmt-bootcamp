@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterOutlet, RouterLinkWithHref, RouterLink } from '@angular/router';
-import { Navbar } from '../../../shared/navbar/navbar';
+import { Navbar } from '../../../shared/components/navbar/navbar';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
