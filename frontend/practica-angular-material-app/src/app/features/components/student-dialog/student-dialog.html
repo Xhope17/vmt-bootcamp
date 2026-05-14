@@ -1,9 +1,16 @@
 <form [formGroup]="studentForm" class="flex flex-col gap-3 pt-4">
-  @if (data?.action == 'delete') {
-    <p>
-      ¿Estás seguro de que deseas eliminar este estudiante? {{ data?.name }}
-      <strong>{{ data?.id }}</strong>
-    </p>
+  @if (data.action == 'delete') {
+    <div class="flex flex-col items-center gap-4">
+
+      <!-- hacer mas grande el warning -->
+      <mat-icon class="text-2xl">warning</mat-icon>
+
+      <p>
+        {{ data.message }}
+        <br />
+        {{ data.subMessage }}
+      </p>
+    </div>
   } @else {
     <mat-form-field appearance="outline" class="w-full">
       <mat-label>Nombre completo</mat-label>

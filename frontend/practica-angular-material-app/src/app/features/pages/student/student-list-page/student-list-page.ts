@@ -70,7 +70,7 @@ export class StudentListPage implements OnInit {
         component: StudentDialog,
         id: id,
         onSave: saveSubject,
-        action: "save",
+        action: 'save',
       },
     });
     // Escuchamos cuando el modal se cierre
@@ -85,28 +85,31 @@ export class StudentListPage implements OnInit {
     });
   }
 
-  eliminarEstudiante(id: string) {
+  eliminarEstudiante(id: string, name: string) {
     //abre un modal puede usar el generic dialog pero crea toda la logica aqui yya que no tengo logica en student-dialog quiero decir al generic solo manda el titulo y la id para eliminar o lo que haga falta
-    const title = 'Eliminar Estudiante';
     const saveSubject = new Subject<void>();
 
     const dialogRef = this._dialog.open(GenericDialog, {
       width: '400px',
       data: {
-        title: title,
+        title: 'Eliminar estudiante',
+        message: '¿Estás seguro de que deseas eliminar a ' + (name || 'este estudiante') + '?',
+        subMessage: 'Esta acción no se puede deshacer',
+        btnText: 'Eliminar',
+        component: StudentDialog,
         id: id,
         onSave: saveSubject,
-        action: "delete",
+        action: 'delete',
       },
     });
 
     dialogRef.afterClosed().subscribe((result) => {
+      // Destruimos el canal para no dejar fugas de memoria
       saveSubject.complete();
+
+      // Si el formulario mandó "true" (se guardó con éxito), recargamos la tabla
       if (result) {
-        // Aquí iría la lógica para eliminar el estudiante usando el servicio
-        // this._studentsService.delete(id).subscribe(() => {
-          this.cargarStudents(); // Recarga la lista después de eliminar
-        // });
+        this.cargarStudents();
       }
     });
   }

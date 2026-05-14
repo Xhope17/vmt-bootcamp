@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, OnInit, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit, signal, Type } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -6,6 +6,20 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { StudentsService } from '../../services/students.service';
+import { Subject } from 'rxjs';
+import { MatIcon } from '@angular/material/icon';
+
+interface GenericDialogData {
+  title: string; // Obligatorio
+  component?: Type<unknown>; // Tipado estricto para componentes de Angular
+  message?: string; // Opcional
+  subMessage?: string; // Opcional
+  btnText?: string; // Opcional
+  btnColor?: 'primary' | 'accent' | 'warn'; // Solo acepta colores nativos de Material
+  action?: 'save' | 'delete' | 'edit'; // Restringido a acciones específicas
+  id?: string | null; // Opcional
+  onSave?: Subject<void>; // Tipado correcto del canal de RxJS
+}
 
 @Component({
   selector: 'app-student-dialog',
@@ -16,6 +30,7 @@ import { StudentsService } from '../../services/students.service';
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
+    MatIcon,
   ],
   templateUrl: './student-dialog.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -25,7 +40,7 @@ export class StudentDialog implements OnInit {
   private _studentsService = inject(StudentsService);
   private _snackBar = inject(MatSnackBar);
   private _dialogRef = inject(MatDialogRef<any>);
-  public data = inject(MAT_DIALOG_DATA);
+  public data = inject<GenericDialogData>(MAT_DIALOG_DATA);
 
   loading = signal(false);
 
@@ -39,21 +54,17 @@ export class StudentDialog implements OnInit {
   ngOnInit() {
     if (this.data?.onSave) {
       this.data.onSave.subscribe(() => {
-        this.guardar();
+        if (this.data?.action === 'delete') {
+          this.eliminarEstudiante();
+        } else {
+          this.guardar();
+        }
       });
     }
 
-    // 2. Si hay ID, es modo edición, cargamos los datos
-    // if (this.data?.id) {
-    //   console.log('Modo edit para el ID: ' + this.data.id);
-    //   this.cargarDatos(this.data.id);
-    // } else {
-    //   console.log('Modo registro');
-    // }
-
-    if (this.data?.action == 'edit' || this.data?.id) {
+    if (this.data?.action == 'edit') {
       console.log('Editando estudiante...');
-      this.cargarDatos(this.data.id);
+      this.cargarDatos(this.data.id ?? '');
     } else if (this.data?.action == 'save') {
       console.log('Guardando estudiante...');
     } else if (this.data?.action == 'delete') {
@@ -105,7 +116,7 @@ export class StudentDialog implements OnInit {
     });
   }
 
-  eliminarStudiante() {
+  eliminarEstudiante() {
     const id = this.data?.id;
     if (!id) {
       this._snackBar.open('ID de estudiante no válido', 'Cerrar');
@@ -113,16 +124,16 @@ export class StudentDialog implements OnInit {
     }
 
     this.loading.set(true);
-    const request = this._studentsService.delete(id);
-
-    request.subscribe({
+    this._studentsService.delete(id).subscribe({
       next: () => {
-        this._snackBar.open(`Estudiante eliminado con éxito`, 'OK');
+        this._snackBar.open('Estudiante eliminado con éxito', 'OK', { duration: 3000 });
         this._dialogRef.close(true);
+        console.log('se eliminó correctamente');
       },
-      error: (err) => {
-        this._snackBar.open('Error al procesar la solicitud', 'Cerrar');
+      error: () => {
+        this._snackBar.open('Error al eliminar', 'Cerrar');
         this.loading.set(false);
+        console.log('error al eliminar student-dialog');
       },
     });
   }
