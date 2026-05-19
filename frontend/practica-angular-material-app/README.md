@@ -1,59 +1,26 @@
 # PracticaAngularMaterialApp
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.0.
+Práctica de proyecto de gestión académica
 
-## Development server
+## Tecnologías Utilizadas
 
-To start a local development server, run:
+* **Framework:** [Angular](https://angular.dev/) (generado con Angular CLI versión 21.2.0).
+* **Gestor de Paquetes:** [pnpm](https://pnpm.io/) para una gestión rápida y eficiente de las dependencias.
 
-```bash
-ng serve
-```
+## Vistas del Proyecto
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+<img width="1600" height="807" alt="image" src="https://github.com/user-attachments/assets/6199efd9-74e5-4e27-85c2-8ea71390010b" />
 
-## Code scaffolding
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Instalación y Dependencias
 
-```bash
-ng generate component component-name
-```
+Este proyecto utiliza pnpm como gestor de paquetes. Para levantar el entorno local, sigue estos pasos:
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+1. Clona el repositorio (reemplaza el enlace con el tuyo):
+   ```bash
+   git clone [enlace del repositorio]
+   
+3. Ingresa a la carpeta del proyecto
+4. Instala las dependencias con pnpm
+    ```bash
+    pnpm install
