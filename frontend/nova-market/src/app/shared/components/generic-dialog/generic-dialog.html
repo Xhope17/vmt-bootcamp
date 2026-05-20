@@ -1,0 +1,14 @@
+<h2 mat-dialog-title class="font-bold text-center">{{ data.title }}</h2>
+
+<mat-dialog-content>
+  @if (data.component) {
+    <ng-container *ngComponentOutlet="data.component"></ng-container>
+  }
+</mat-dialog-content>
+
+<mat-dialog-actions align="end" class="pb-4 pr-4">
+  <button mat-button mat-dialog-close>Cancelar</button>
+  <button mat-raised-button color="primary" (click)="onSaveClick()">
+    {{ data.btnText || 'Guardar' }}
+  </button>
+</mat-dialog-actions>

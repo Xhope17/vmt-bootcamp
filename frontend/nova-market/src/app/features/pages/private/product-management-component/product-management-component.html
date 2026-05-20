@@ -1,0 +1,135 @@
+<section class="p-4">
+  <div class="mb-4 flex items-center justify-between border-b border-slate-200 pb-4">
+    <h1 class="text-2xl font-bold text-slate-800">Gestión de Productos</h1>
+
+    <button mat-flat-button color="primary" (click)="abrirModal(null)">
+      <mat-icon>add</mat-icon>
+      Registrar Producto
+    </button>
+  </div>
+
+  @if (loading()) {
+    <div class="flex flex-col items-center gap-4 py-6 text-center font-semibold text-blue-500 animate-pulse">
+      <mat-spinner diameter="40"></mat-spinner>
+      Cargando inventario...
+    </div>
+  }
+
+  @if (error()) {
+    <div class="py-6 text-center font-semibold text-red-500">
+      <mat-icon class="align-middle">error</mat-icon> Error: {{ error() }}
+    </div>
+  }
+
+  @if (!loading() && !error() && products().length === 0) {
+    <div class="py-12 text-center font-semibold text-gray-400">
+      No hay productos registrados en el sistema.
+    </div>
+  }
+
+  @if (!loading() && !error() && products().length > 0) {
+    <div class="relative">
+      <div
+        id="productsListContainer"
+        class="flex max-h-[750px] flex-row flex-wrap justify-center gap-6 overflow-y-auto pr-2 pb-4"
+        style="scrollbar-width: thin; scrollbar-color: #cbd5e1 transparent"
+      >
+        @for (p of products(); track p.id) {
+          <div class="flex w-72 max-w-72 items-stretch">
+            <mat-card
+              class="flex h-full w-full cursor-default flex-col overflow-hidden bg-white shadow-sm transition-all duration-300 hover:shadow-md"
+              appearance="outlined"
+            >
+              <div class="relative h-40 w-full bg-slate-50 border-b border-slate-100">
+                <img [src]="p.thumbnail" [alt]="p.title" class="h-full w-full object-cover" />
+                <div class="absolute top-2 right-2 rounded bg-white/90 px-2 py-0.5 text-xs font-bold text-slate-700 shadow-sm">
+                  ID: {{ p.id }}
+                </div>
+              </div>
+
+              <div class="flex flex-col items-start overflow-hidden px-4 pt-4 text-left">
+                <div
+                  class="mb-2 w-full text-base font-bold leading-5 text-slate-900"
+                  [title]="p.title"
+                  style="display: -webkit-box; line-clamp: 2; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; min-height: 2.5rem;"
+                >
+                  {{ p.title }}
+                </div>
+
+                <div class="flex w-full items-center justify-between">
+                  <span class="inline-block rounded-md bg-emerald-50 px-2 py-1 text-sm font-bold text-emerald-700">
+                    ${{ p.price }}
+                  </span>
+                  <span class="text-xs font-bold uppercase text-slate-400">
+                    {{ p.category }}
+                  </span>
+                </div>
+              </div>
+
+              <hr class="mx-4 mt-4 border-slate-100" />
+
+              <div class="flex flex-1 flex-col gap-1 overflow-hidden px-4 py-3 text-left">
+                <div class="flex w-full flex-row items-center overflow-hidden">
+                  <span class="mr-1 shrink-0 text-sm font-semibold text-slate-700">Stock:</span>
+                  <span class="text-sm font-bold {{ p.stock < 50 ? 'text-orange-500' : 'text-slate-600' }}">
+                    {{ p.stock }} uds
+                  </span>
+                </div>
+                <div class="flex w-full flex-row items-center overflow-hidden">
+                  <span class="mr-1 shrink-0 text-sm font-semibold text-slate-700">Marca:</span>
+                  <span class="truncate text-sm text-slate-600" [title]="p.brand">
+                    {{ p.brand }}
+                  </span>
+                </div>
+              </div>
+
+              <hr class="mx-4 mt-auto border-slate-100" />
+
+              <div class="mt-auto flex items-center justify-between gap-2 bg-slate-50 p-3">
+                <button
+                  mat-icon-button
+                  matTooltip="Ver en tienda"
+                  class="text-sky-600 hover:bg-sky-100"
+                  [routerLink]="['/products', p.id]"
+                >
+                  <mat-icon>visibility</mat-icon>
+                </button>
+
+                <div>
+                  <button
+                    mat-icon-button
+                    matTooltip="Editar"
+                    class="text-indigo-600 hover:bg-indigo-100 mr-1"
+                    (click)="abrirModal(p.id)"
+                  >
+                    <mat-icon>edit</mat-icon>
+                  </button>
+                  <button
+                    mat-icon-button
+                    matTooltip="Eliminar"
+                    class="text-red-600 hover:bg-red-100"
+                    (click)="eliminarProducto(p.id, p.title)"
+                  >
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                </div>
+              </div>
+            </mat-card>
+          </div>
+        }
+      </div>
+
+      <button
+        id="productsScrollBtn"
+        mat-fab
+        color="primary"
+        [attr.aria-label]="isScrolledToBottom() ? 'Ir al inicio' : 'Ir al final'"
+        [matTooltip]="isScrolledToBottom() ? 'Ir al inicio' : 'Ir al final'"
+        class="z-10"
+        (click)="scrollToBottom()"
+      >
+        <mat-icon>{{ isScrolledToBottom() ? 'arrow_upward' : 'arrow_downward' }}</mat-icon>
+      </button>
+    </div>
+  }
+</section>

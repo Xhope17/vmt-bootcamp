@@ -1,0 +1,33 @@
+<nav mat-tab-nav-bar [tabPanel]="tabPanel" backgroundColor="primary">
+  <a
+    mat-tab-link
+    routerLink="/"
+    routerLinkActive
+    [routerLinkActiveOptions]="{ exact: true }"
+    #rlahome="routerLinkActive"
+    [active]="rlahome.isActive"
+  >
+    Home
+  </a>
+  <a
+    mat-tab-link
+    routerLink="/products"
+    routerLinkActive
+    #rlaProducts="routerLinkActive"
+    [active]="rlaProducts.isActive"
+  >
+    Productos
+  </a>
+
+  <a
+    mat-tab-link
+    routerLink="/login"
+    routerLinkActive
+    #rlaLogin="routerLinkActive"
+    [active]="rlaLogin.isActive"
+  >
+    Iniciar sesión
+  </a>
+</nav>
+
+<mat-tab-nav-panel #tabPanel></mat-tab-nav-panel>

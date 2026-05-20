@@ -1,0 +1,79 @@
+<div class="flex h-screen w-screen overflow-hidden bg-slate-50">
+  <aside
+    class="z-20 flex flex-col bg-slate-900 text-slate-200 shadow-[2px_0_8px_rgba(0,0,0,0.15)] transition-all duration-300 ease-in-out"
+    [class.w-[260px]]="!collapsed()"
+    [class.w-[72px]]="collapsed()"
+  >
+    <div
+      class="flex h-16 shrink-0 items-center border-b border-white/10 text-xl font-extrabold text-white"
+      [class.justify-center]="collapsed()"
+      [class.px-0]="collapsed()"
+      [class.px-5]="!collapsed()"
+    >
+      <mat-icon class="text-blue-500" [class.mr-3]="!collapsed()">storefront</mat-icon>
+      @if (!collapsed()) {
+        <span class="truncate">NOVA-MARKET</span>
+      }
+    </div>
+
+    <mat-nav-list class="custom-nav flex-grow overflow-y-auto overflow-x-hidden pt-4">
+      @for (item of navItems; track item.route) {
+        <a
+          mat-list-item
+          [routerLink]="item.route"
+          routerLinkActive="active-item"
+          class="mx-3 mb-1 rounded-lg text-slate-300 transition-colors hover:bg-slate-800 hover:text-white"
+          [matTooltip]="collapsed() ? item.label : ''"
+          matTooltipPosition="right"
+        >
+          <mat-icon matListItemIcon class="text-slate-400 group-hover:text-white">{{
+            item.icon
+          }}</mat-icon>
+          @if (!collapsed()) {
+            <div matListItemTitle>{{ item.label }}</div>
+          }
+        </a>
+      }
+    </mat-nav-list>
+
+    <div class="shrink-0 border-t border-white/10 p-4">
+      <button
+        mat-button
+        class="flex h-12 w-full items-center rounded-lg text-red-300 transition-colors hover:bg-red-500/10 hover:text-red-500"
+        [class.justify-center]="collapsed()"
+        [class.justify-start]="!collapsed()"
+        (click)="logout()"
+        [matTooltip]="collapsed() ? 'Cerrar sesión' : ''"
+        matTooltipPosition="right"
+      >
+        <mat-icon [class.mr-3]="!collapsed()">logout</mat-icon>
+        @if (!collapsed()) {
+          <span>Cerrar sesión</span>
+        }
+      </button>
+    </div>
+  </aside>
+
+  <div class="flex flex-1 flex-col overflow-hidden">
+    <mat-toolbar class="z-10 flex h-16 items-center bg-white px-4 text-slate-700 shadow-sm">
+      <button mat-icon-button (click)="toggle()" class="text-slate-500 hover:text-slate-800">
+        <mat-icon>{{ collapsed() ? 'menu_open' : 'menu' }}</mat-icon>
+      </button>
+
+      <span class="ml-4 text-lg font-semibold">Panel de Administración</span>
+
+      <span class="flex-1"></span>
+
+      <mat-icon
+        class="h-9 w-9 cursor-pointer text-slate-400 transition-colors hover:text-blue-500"
+        matTooltip="Mi Perfil"
+      >
+        account_circle
+      </mat-icon>
+    </mat-toolbar>
+
+    <main class="flex-1 overflow-hidden relative">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</div>

@@ -1,0 +1,83 @@
+<form [formGroup]="productForm" class="flex flex-col gap-3 pt-4">
+  @if (data.action == 'delete') {
+    <div class="flex flex-col items-center gap-4 text-center">
+      <div class="rounded-full bg-red-100 p-3">
+        <mat-icon class="text-3xl text-red-600">warning</mat-icon>
+      </div>
+
+      <p class="text-base font-medium text-slate-800">
+        {{ data.message }}
+        <br />
+        <span class="text-sm font-normal text-slate-500">{{ data.subMessage }}</span>
+      </p>
+    </div>
+  } @else {
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>Título del producto</mat-label>
+      <input matInput formControlName="title" placeholder="Ej. Laptop Gaming ASUS" />
+      @if (productForm.get('title')?.invalid && productForm.get('title')?.touched) {
+        <mat-error>El título es requerido y debe tener al menos 3 caracteres</mat-error>
+      }
+    </mat-form-field>
+
+    <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Categoría</mat-label>
+        <input matInput formControlName="category" placeholder="Ej. laptops" />
+        @if (productForm.get('category')?.invalid && productForm.get('category')?.touched) {
+          <mat-error>La categoría es requerida</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Marca</mat-label>
+        <input matInput formControlName="brand" placeholder="Ej. ASUS" />
+        @if (productForm.get('brand')?.invalid && productForm.get('brand')?.touched) {
+          <mat-error>La marca es requerida</mat-error>
+        }
+      </mat-form-field>
+    </div>
+
+    <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Precio ($)</mat-label>
+        <input matInput type="number" formControlName="price" placeholder="0.00" />
+        <mat-icon matPrefix class="mr-2 text-slate-400">attach_money</mat-icon>
+        @if (productForm.get('price')?.invalid && productForm.get('price')?.touched) {
+          <mat-error>Precio inválido</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Stock (uds)</mat-label>
+        <input matInput type="number" formControlName="stock" placeholder="0" />
+        <mat-icon matPrefix class="mr-2 text-slate-400">inventory_2</mat-icon>
+        @if (productForm.get('stock')?.invalid && productForm.get('stock')?.touched) {
+          <mat-error>Stock inválido</mat-error>
+        }
+      </mat-form-field>
+    </div>
+
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>URL de Imagen (Thumbnail)</mat-label>
+      <input matInput formControlName="thumbnail" placeholder="https://..." />
+      <mat-icon matPrefix class="mr-2 text-slate-400">image</mat-icon>
+      @if (productForm.get('thumbnail')?.invalid && productForm.get('thumbnail')?.touched) {
+        <mat-error>La URL de la imagen es obligatoria</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>Descripción detallada</mat-label>
+      <textarea
+        matInput
+        formControlName="description"
+        rows="3"
+        placeholder="Describe las características principales del producto..."
+      ></textarea>
+      @if (productForm.get('description')?.invalid && productForm.get('description')?.touched) {
+        <mat-error>La descripción es requerida (mín. 10 caracteres)</mat-error>
+      }
+    </mat-form-field>
+  }
+</form>

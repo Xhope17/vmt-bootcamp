@@ -1,0 +1,77 @@
+<div class="flex min-h-screen items-center justify-center bg-slate-100 p-4">
+  <mat-card class="w-full max-w-md p-6 shadow-xl" appearance="outlined">
+
+    <mat-card-header class="mb-6 flex flex-col items-center text-center">
+      <div class="flex h-16 w-16 items-center justify-center rounded-full bg-blue-600 text-white shadow-md mb-4">
+        <mat-icon class="text-3xl h-auto w-auto">storefront</mat-icon>
+      </div>
+      <mat-card-title class="text-2xl font-extrabold text-slate-800">NOVA-MARKET</mat-card-title>
+      <mat-card-subtitle class="mt-1 text-slate-500">Inicia sesión en el panel de control</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      @if (error()) {
+        <div class="mb-6 flex items-center gap-2 rounded-lg border border-red-200 bg-red-50 p-3 text-sm font-medium text-red-700">
+          <mat-icon class="text-red-500 text-sm h-auto w-auto">error_outline</mat-icon>
+          {{ error() }}
+        </div>
+      }
+
+      <form [formGroup]="form" (ngSubmit)="onSubmit()" class="flex flex-col gap-2">
+
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Usuario</mat-label>
+          <input matInput formControlName="username" placeholder="Ej: emilys1" />
+          <mat-icon matPrefix class="mr-2 text-slate-400">person</mat-icon>
+
+          @if (form.controls.username.hasError('required') && form.controls.username.touched) {
+            <mat-error>El usuario es <strong>requerido</strong></mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Contraseña</mat-label>
+          <input
+            matInput
+            [type]="showPass() ? 'text' : 'password'"
+            formControlName="password"
+            placeholder="Tu contraseña"
+          />
+          <mat-icon matPrefix class="mr-2 text-slate-400">lock</mat-icon>
+
+          <button
+            type="button"
+            mat-icon-button
+            matSuffix
+            (click)="showPass.set(!showPass())"
+            matTooltip="Ocultar/Mostrar"
+          >
+            <mat-icon class="text-slate-500">{{ showPass() ? 'visibility_off' : 'visibility' }}</mat-icon>
+          </button>
+
+          @if (form.controls.password.hasError('required') && form.controls.password.touched) {
+            <mat-error>La contraseña es <strong>requerida</strong></mat-error>
+          }
+        </mat-form-field>
+
+        <button
+          mat-flat-button
+          color="primary"
+          type="submit"
+          class="mt-4 h-12 w-full rounded-full text-base tracking-wide transition-all"
+          [disabled]="form.invalid || loading()"
+        >
+          @if (loading()) {
+            <div class="flex items-center justify-center gap-2">
+              <mat-spinner diameter="20" class="text-white"></mat-spinner>
+              <span>Verificando...</span>
+            </div>
+          } @else {
+            Ingresar al Dashboard
+          }
+        </button>
+
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

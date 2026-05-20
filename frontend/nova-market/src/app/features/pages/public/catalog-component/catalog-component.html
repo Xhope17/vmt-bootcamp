@@ -1,0 +1,114 @@
+<div class="container mx-auto px-4 py-8">
+  <h1 class="mb-8 text-center text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">
+    Catálogo de Productos
+  </h1>
+
+  @if (loading()) {
+    <div class="flex flex-col items-center justify-center gap-4 py-12 text-center font-semibold text-blue-500 animate-pulse">
+      <mat-spinner diameter="50"></mat-spinner>
+      <span class="text-lg">Cargando catálogo de productos...</span>
+    </div>
+  }
+
+  @if (error()) {
+    <div class="mx-auto max-w-md rounded-lg border border-red-200 bg-red-50 p-4 text-center font-semibold text-red-700 shadow-sm">
+      <div class="flex items-center justify-center gap-2">
+        <mat-icon>error</mat-icon>
+        <span>Error: {{ error() }}</span>
+      </div>
+    </div>
+  }
+
+  @if (!loading() && !error() && products().length === 0) {
+    <div class="py-12 text-center font-semibold text-gray-400">
+      <mat-icon class="text-5xl mb-2 block h-auto w-auto">inventory_2</mat-icon>
+      <p class="text-lg">No hay productos registrados en la tienda en este momento.</p>
+    </div>
+  }
+
+  @if (!loading() && !error() && products().length > 0) {
+    <div class="relative">
+      <div
+        id="productsListContainer"
+        class="flex max-h-[800px] flex-row flex-wrap justify-center gap-6 overflow-y-auto pr-2 pb-6"
+        style="scrollbar-width: thin; scrollbar-color: #475569 transparent"
+      >
+        @for (p of products(); track p.id) {
+          <div class="flex w-72 max-w-72 items-stretch">
+            <mat-card
+              class="flex h-full w-full cursor-pointer flex-col overflow-hidden bg-white shadow-sm transition-all duration-300 ease-in-out hover:-translate-y-1 hover:scale-[1.02] hover:shadow-lg"
+              appearance="outlined"
+            >
+              <div class="relative h-48 w-full overflow-hidden bg-gray-50">
+                <img
+                  [src]="p.thumbnail"
+                  [alt]="p.title"
+                  class="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
+                />
+              </div>
+
+              <div class="flex flex-col items-start overflow-hidden px-4 pt-5 text-left">
+                <div
+                  class="mb-3 w-full text-lg font-bold leading-6 text-slate-900"
+                  [title]="p.title"
+                  style="
+                    display: -webkit-box;
+                    line-clamp: 2;
+                    -webkit-line-clamp: 2;
+                    -webkit-box-orient: vertical;
+                    overflow: hidden;
+                    white-space: normal;
+                    min-height: 3rem;
+                  "
+                >
+                  {{ p.title }}
+                </div>
+
+                <div class="flex w-full items-center justify-between gap-2">
+                  <span class="inline-block rounded-full border border-emerald-100 bg-emerald-50 px-3 py-1 text-sm font-black text-emerald-700">
+                    ${{ p.price }}
+                  </span>
+                  <span class="truncate text-xs font-bold uppercase tracking-wider text-gray-400" [title]="p.category">
+                    {{ p.category }}
+                  </span>
+                </div>
+              </div>
+
+              <hr class="mx-4 mt-4 border-slate-100" />
+
+              <div class="flex flex-1 flex-col gap-2 overflow-hidden px-4 pb-2 pt-4 text-left">
+                <span
+                  class="block w-full text-sm text-gray-600"
+                  [title]="p.description"
+                  style="
+                    display: -webkit-box;
+                    line-clamp: 3;
+                    -webkit-line-clamp: 3;
+                    -webkit-box-orient: vertical;
+                    overflow: hidden;
+                  "
+                >
+                  {{ p.description }}
+                </span>
+              </div>
+
+              <hr class="mx-4 mt-auto border-slate-100" />
+
+              <div class="mt-auto flex items-center justify-center p-4">
+                <button
+                  mat-stroked-button
+                  color="primary"
+                  class="w-full rounded-full"
+                  [routerLink]="['/products', p.id]"
+                >
+                  <mat-icon>visibility</mat-icon>
+                  Ver detalles
+                </button>
+              </div>
+            </mat-card>
+          </div>
+        }
+      </div>
+    </div>
+  }
+</div>

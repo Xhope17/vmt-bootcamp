@@ -1,0 +1,21 @@
+<!--  -->
+
+<div class="min-h-screen bg-base-200 flex flex-col">
+  <header>
+    <app-public-header />
+  </header>
+
+  <!-- navbar -->
+  <div>
+    <app-public-navbar></app-public-navbar>
+  </div>
+
+  <!-- contenido -->
+  <main class="container mx-auto flex-grow p-4">
+    <router-outlet></router-outlet>
+  </main>
+
+  <footer class="footer footer-center p-4 bg-base-300 text-base-content justify-center text-center">
+    <app-public-footer> </app-public-footer>
+  </footer>
+</div>
