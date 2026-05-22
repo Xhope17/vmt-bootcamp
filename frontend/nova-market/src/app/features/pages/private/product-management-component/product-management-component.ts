@@ -16,14 +16,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { Subject } from 'rxjs';
 
-// Ajusta estas rutas a tu proyecto actual NOVA-MARKET
 import { GenericDialog } from '../../../../shared/components/generic-dialog/generic-dialog';
 import { Product } from '../../../../shared/interfaces/product.interface';
 import { ProductsService } from '../../../../shared/services/products.service';
 import { ProductModal } from '../product-modal/product-modal';
-
-// Asumiré que crearás este modal después. Cambia el import a la ruta correcta.
-
+import { MatSelectModule } from '@angular/material/select';
 @Component({
   selector: 'app-product-management',
   standalone: true,
@@ -35,6 +32,7 @@ import { ProductModal } from '../product-modal/product-modal';
     MatButtonModule,
     MatTooltipModule,
     MatIconModule,
+    MatSelectModule,
   ],
   templateUrl: './product-management-component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -46,7 +44,11 @@ export class ProductManagementComponent implements OnInit, AfterViewInit, OnDest
   loading = signal(false);
   error = signal('');
   products = signal<Product[]>([]);
+  productsView = signal<Product[]>([]);
   isScrolledToBottom = signal(false);
+  categories = signal<string[]>([]);
+  searchTerm = signal('');
+  selectedCategory = signal<string>('');
 
   private _resizeHandler: any;
   private _scrollHandler: any;
@@ -55,7 +57,6 @@ export class ProductManagementComponent implements OnInit, AfterViewInit, OnDest
     this.cargarProductos();
   }
 
-  // --- CONTROL DEL SCROLL ---
   ngAfterViewInit() {
     this.positionScrollButton();
 
@@ -74,7 +75,6 @@ export class ProductManagementComponent implements OnInit, AfterViewInit, OnDest
     }
   }
 
-  // --- LÓGICA DE DATOS ---
   cargarProductos() {
     this.loading.set(true);
     this.error.set('');
@@ -82,6 +82,10 @@ export class ProductManagementComponent implements OnInit, AfterViewInit, OnDest
     this._productService.getProducts().subscribe({
       next: (data) => {
         this.products.set(data);
+        this.productsView.set(data);
+        this.categories.set(
+          data.map((p) => p.category).filter((c, i, arr) => arr.indexOf(c) === i),
+        );
         this.loading.set(false);
       },
       error: (err) => {
@@ -92,7 +96,25 @@ export class ProductManagementComponent implements OnInit, AfterViewInit, OnDest
     });
   }
 
-  // --- MODALES ---
+  filtrarCategoria() {
+    let resultados = this.products();
+    const texto = this.searchTerm().toLowerCase().trim();
+    const cat = this.selectedCategory();
+    if (texto) {
+      resultados = resultados.filter(
+        (p) =>
+          p.title.toLowerCase().includes(texto) ||
+          (p.description && p.description.toLowerCase().includes(texto)),
+      );
+    }
+
+    if (cat) {
+      resultados = resultados.filter(p => p.category === cat);
+    }
+
+    this.productsView.set(resultados);
+  }
+
   abrirModal(id: number | null = null) {
     const title = id ? 'Editar Producto' : 'Registrar Producto';
     const action = id ? 'edit' : 'save';
@@ -103,7 +125,7 @@ export class ProductManagementComponent implements OnInit, AfterViewInit, OnDest
       disableClose: true,
       data: {
         title: title,
-        component: ProductModal, // Componente hijo que manejará el formulario
+        component: ProductModal,
         id: id,
         onSave: saveSubject,
         action: action,
@@ -128,7 +150,7 @@ export class ProductManagementComponent implements OnInit, AfterViewInit, OnDest
         message: '¿Estás seguro de que deseas eliminar "' + name + '"?',
         subMessage: 'Esta acción no se puede deshacer.',
         btnText: 'Eliminar',
-        component: ProductModal, // Componente o lógica de eliminación
+        component: ProductModal,
         id: id,
         onSave: saveSubject,
         action: 'delete',
@@ -143,7 +165,7 @@ export class ProductManagementComponent implements OnInit, AfterViewInit, OnDest
     });
   }
 
-  // --- UTILIDADES DEL DOM ---
+  //utilidades para el scroll - fechas de subir y bajar
   scrollToBottom() {
     const el = document.getElementById('productsListContainer');
     if (!el) return;
