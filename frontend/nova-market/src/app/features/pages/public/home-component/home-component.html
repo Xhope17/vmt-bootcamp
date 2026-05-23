@@ -1,1 +1,142 @@
-<p>home-component works!</p>,
+<section class="relative overflow-hidden border-b border-slate-100 bg-gradient-to-r from-indigo-50 via-white to-sky-50 py-16 md:py-24">
+  <div class="container mx-auto flex max-w-6xl flex-col items-center gap-12 px-6 md:flex-row">
+
+    <div class="z-10 flex-1 text-center md:text-left">
+      <div class="mb-6 inline-flex items-center gap-2 rounded-full bg-indigo-100 px-4 py-1.5 text-sm font-semibold text-indigo-700">
+        <mat-icon class="scale-75">stars</mat-icon> Bienvenidos a la nueva era
+      </div>
+      <h1 class="text-4xl font-extrabold leading-tight tracking-tight text-slate-900 md:text-6xl">
+        Tecnología que <span class="bg-gradient-to-r from-indigo-600 to-sky-500 bg-clip-text text-transparent">impulsa</span> tu vida.
+      </h1>
+      <p class="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-slate-600 md:mx-0">
+        Descubre en Nova Market el mejor catálogo de electrónicos, gadgets y accesorios con precios competitivos y garantía de calidad.
+      </p>
+
+      <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row md:justify-start">
+        <button mat-flat-button color="primary" routerLink="/products" class="w-full !rounded-full !px-8 !py-6 !text-lg shadow-lg transition-transform hover:scale-105 sm:w-auto">
+          Ver catálogo
+          <mat-icon iconPositionEnd>shopping_bag</mat-icon>
+        </button>
+        <button mat-stroked-button routerLink="/about" class="w-full !rounded-full bg-white !px-8 !py-6 !text-lg text-slate-700 transition-transform hover:scale-105 sm:w-auto">
+          Conócenos
+        </button>
+      </div>
+    </div>
+
+    <div class="relative flex-1">
+      <div class="absolute inset-0 scale-110 transform rounded-full bg-gradient-to-tr from-indigo-200 to-sky-100 opacity-50 blur-3xl"></div>
+      <img src="https://images.unsplash.com/photo-1498049794561-7780e7231661?q=80&w=800&auto=format&fit=crop" alt="Tecnología Nova Market" class="relative z-10 h-auto w-full transform rounded-2xl object-cover shadow-2xl transition duration-500 hover:-translate-y-2" />
+    </div>
+  </div>
+</section>
+
+<section class="bg-white py-16">
+  <div class="container mx-auto max-w-6xl px-6">
+    <h2 class="mb-8 text-center text-3xl font-bold text-slate-800 md:text-left">Promociones Exclusivas</h2>
+
+    <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+      <div class="relative flex flex-col justify-center overflow-hidden rounded-3xl bg-gradient-to-br from-violet-600 to-indigo-800 p-8 text-white shadow-lg">
+        <mat-icon class="absolute -right-6 -top-6 -rotate-12 transform text-9xl opacity-10">local_offer</mat-icon>
+        <span class="mb-2 text-sm font-semibold uppercase tracking-wider text-indigo-200">Oferta Especial</span>
+        <h3 class="mb-2 text-3xl font-bold">20% de descuento</h3>
+        <p class="mb-6 max-w-sm text-indigo-100">En toda la categoría de Laptops y Computadoras usando el código <strong>NOVA20</strong>.</p>
+        <div>
+          <button mat-stroked-button class="!rounded-full !border-white text-white hover:!bg-white hover:text-indigo-900">Canjear ahora</button>
+        </div>
+      </div>
+
+      <div class="relative flex flex-col justify-center overflow-hidden rounded-3xl bg-gradient-to-br from-emerald-500 to-teal-700 p-8 text-white shadow-lg">
+        <mat-icon class="absolute -bottom-6 -right-6 rotate-12 transform text-9xl opacity-10">local_shipping</mat-icon>
+        <span class="mb-2 text-sm font-semibold uppercase tracking-wider text-emerald-200">Solo por hoy</span>
+        <h3 class="mb-2 text-3xl font-bold">Envío Gratis</h3>
+        <p class="mb-6 max-w-sm text-emerald-100">Disfruta de envío gratuito a todo el país en compras mayores a $50.</p>
+        <div>
+          <button mat-stroked-button class="!rounded-full !border-white text-white hover:!bg-white hover:text-teal-900">Comprar ahora</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="border-t border-slate-100 bg-slate-50 py-16 pb-24">
+  <div class="container mx-auto max-w-6xl px-6">
+
+    <div class="mb-10 flex items-center justify-between">
+      <h2 class="text-3xl font-bold text-slate-800">Productos Destacados</h2>
+      <button mat-button color="primary" routerLink="/products" class="hidden sm:inline-flex">
+        Ver todos <mat-icon iconPositionEnd>arrow_forward</mat-icon>
+      </button>
+    </div>
+
+    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+
+      <mat-card appearance="outlined" class="flex h-full cursor-pointer flex-col bg-white transition-shadow hover:shadow-lg">
+        <div class="relative flex h-48 items-center justify-center bg-slate-100 p-4">
+          <span class="absolute left-2 top-2 rounded bg-red-500 px-2 py-1 text-xs font-bold text-white">-15%</span>
+          <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=400&auto=format&fit=crop" alt="Auriculares Bluetooth" class="max-h-full object-contain mix-blend-multiply" />
+        </div>
+        <mat-card-content class="flex flex-1 flex-col p-5">
+          <span class="mb-1 text-xs font-bold uppercase tracking-wider text-indigo-600">Audio</span>
+          <h3 class="mb-2 line-clamp-2 text-lg font-bold leading-tight text-slate-800">Auriculares Inalámbricos Premium ANC</h3>
+          <div class="mt-auto flex items-end justify-between">
+            <div>
+              <p class="mb-0.5 text-sm text-slate-400 line-through">$299.99</p>
+              <p class="text-xl font-black text-emerald-600">$254.99</p>
+            </div>
+            <button mat-mini-fab color="primary" class="shadow-sm"><mat-icon>add_shopping_cart</mat-icon></button>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card appearance="outlined" class="flex h-full cursor-pointer flex-col bg-white transition-shadow hover:shadow-lg">
+        <div class="relative flex h-48 items-center justify-center bg-slate-100 p-4">
+          <img src="https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?q=80&w=400&auto=format&fit=crop" alt="Laptop Pro" class="max-h-full object-contain mix-blend-multiply" />
+        </div>
+        <mat-card-content class="flex flex-1 flex-col p-5">
+          <span class="mb-1 text-xs font-bold uppercase tracking-wider text-indigo-600">Computación</span>
+          <h3 class="mb-2 line-clamp-2 text-lg font-bold leading-tight text-slate-800">Laptop Ultradelgada 14" 16GB RAM 512GB SSD</h3>
+          <div class="mt-auto flex items-end justify-between">
+            <div>
+              <p class="text-xl font-black text-emerald-600">$899.00</p>
+            </div>
+            <button mat-mini-fab color="primary" class="shadow-sm"><mat-icon>add_shopping_cart</mat-icon></button>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card appearance="outlined" class="flex h-full cursor-pointer flex-col bg-white transition-shadow hover:shadow-lg">
+        <div class="relative flex h-48 items-center justify-center bg-slate-100 p-4">
+          <span class="absolute left-2 top-2 rounded bg-indigo-600 px-2 py-1 text-xs font-bold text-white">NUEVO</span>
+          <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?q=80&w=400&auto=format&fit=crop" alt="Smartwatch" class="max-h-full object-contain mix-blend-multiply" />
+        </div>
+        <mat-card-content class="flex flex-1 flex-col p-5">
+          <span class="mb-1 text-xs font-bold uppercase tracking-wider text-indigo-600">Wearables</span>
+          <h3 class="mb-2 line-clamp-2 text-lg font-bold leading-tight text-slate-800">Smartwatch Serie 5 con Monitor de Salud 24/7</h3>
+          <div class="mt-auto flex items-end justify-between">
+            <div>
+              <p class="text-xl font-black text-emerald-600">$199.50</p>
+            </div>
+            <button mat-mini-fab color="primary" class="shadow-sm"><mat-icon>add_shopping_cart</mat-icon></button>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card appearance="outlined" class="flex h-full cursor-pointer flex-col bg-white transition-shadow hover:shadow-lg">
+        <div class="relative flex h-48 items-center justify-center bg-slate-100 p-4">
+          <img src="https://images.unsplash.com/photo-1585399000684-d2f72660f092?q=80&w=400&auto=format&fit=crop" alt="Smartphone" class="max-h-full object-contain mix-blend-multiply" />
+        </div>
+        <mat-card-content class="flex flex-1 flex-col p-5">
+          <span class="mb-1 text-xs font-bold uppercase tracking-wider text-indigo-600">Smartphones</span>
+          <h3 class="mb-2 line-clamp-2 text-lg font-bold leading-tight text-slate-800">Smartphone 5G 128GB Cámara 64MP Batería 5000mAh</h3>
+          <div class="mt-auto flex items-end justify-between">
+            <div>
+              <p class="text-xl font-black text-emerald-600">$349.00</p>
+            </div>
+            <button mat-mini-fab color="primary" class="shadow-sm"><mat-icon>add_shopping_cart</mat-icon></button>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+    </div>
+  </div>
+</section>

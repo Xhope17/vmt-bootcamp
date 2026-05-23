@@ -1,0 +1,108 @@
+<section class="min-h-full bg-slate-50 py-16 px-4 md:px-6">
+  <div class="mx-auto w-full max-w-5xl">
+
+    <div class="mx-auto max-w-3xl text-center mb-14">
+      <h2 class="text-4xl font-bold text-slate-800">Contáctanos</h2>
+      <p class="mt-4 text-lg text-slate-600">
+        ¿Tienes alguna pregunta o necesitas ayuda? Estamos aquí para ti.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+
+      <div class="rounded-xl bg-white p-6 border border-slate-200 text-center flex flex-col items-center transition-shadow hover:shadow-md">
+        <div class="flex h-14 w-14 items-center justify-center rounded-full bg-indigo-50 text-indigo-600 mb-4">
+          <mat-icon>location_on</mat-icon>
+        </div>
+        <h3 class="font-bold text-slate-800">Dirección</h3>
+        <p class="mt-2 text-sm text-slate-600">Av. Falsa 123, Piso 4<br />Guayaquil, Ecuador</p>
+      </div>
+
+      <div class="rounded-xl bg-white p-6 border border-slate-200 text-center flex flex-col items-center transition-shadow hover:shadow-md">
+        <div class="flex h-14 w-14 items-center justify-center rounded-full bg-emerald-50 text-emerald-600 mb-4">
+          <mat-icon>phone</mat-icon>
+        </div>
+        <h3 class="font-bold text-slate-800">Teléfono</h3>
+        <p class="mt-2 text-sm text-slate-600">+593 99 123 4567<br />Soporte Técnico</p>
+      </div>
+
+      <div class="rounded-xl bg-white p-6 border border-slate-200 text-center flex flex-col items-center transition-shadow hover:shadow-md">
+        <div class="flex h-14 w-14 items-center justify-center rounded-full bg-orange-50 text-orange-600 mb-4">
+          <mat-icon>mail</mat-icon>
+        </div>
+        <h3 class="font-bold text-slate-800">Correo</h3>
+        <p class="mt-2 text-sm text-slate-600 break-all">contacto&#64;novamarket.com</p>
+      </div>
+
+      <div class="rounded-xl bg-white p-6 border border-slate-200 text-center flex flex-col items-center transition-shadow hover:shadow-md">
+        <div class="flex h-14 w-14 items-center justify-center rounded-full bg-sky-50 text-sky-600 mb-4">
+          <mat-icon>schedule</mat-icon>
+        </div>
+        <h3 class="font-bold text-slate-800">Horario</h3>
+        <p class="mt-2 text-sm text-slate-600">Lunes a Viernes<br />9:00 AM – 6:00 PM</p>
+      </div>
+
+    </div>
+
+    <div class="mx-auto max-w-3xl">
+      <div class="rounded-xl bg-white p-6 md:p-10 border border-slate-200 shadow-sm">
+
+        <h3 class="text-2xl font-bold text-slate-800 mb-6 text-center">Envíanos un mensaje</h3>
+
+        <form (ngSubmit)="submit()" class="flex flex-col gap-2">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <mat-form-field appearance="outline" class="w-full">
+              <mat-label>Nombre</mat-label>
+              <input matInput name="name" [(ngModel)]="model.name" required />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="w-full">
+              <mat-label>Correo Electrónico</mat-label>
+              <input matInput type="email" name="email" [(ngModel)]="model.email" required />
+            </mat-form-field>
+          </div>
+
+          <mat-form-field appearance="outline" class="w-full">
+            <mat-label>Mensaje</mat-label>
+            <textarea matInput name="message" rows="5" [(ngModel)]="model.message" required></textarea>
+          </mat-form-field>
+
+          <div class="mt-2 text-center">
+            <button type="submit" mat-flat-button color="primary" class="!px-8 !py-6 !text-base !rounded-full shadow-md hover:shadow-lg transition-transform hover:scale-105 w-full md:w-auto">
+              Enviar mensaje
+              <mat-icon iconPositionEnd>send</mat-icon>
+            </button>
+          </div>
+        </form>
+
+        <hr class="my-8 border-slate-100" />
+
+        <div class="text-center">
+          <h4 class="text-sm font-bold text-slate-400 uppercase tracking-widest mb-5">O encuéntranos en redes sociales</h4>
+
+          <div class="flex flex-wrap items-center justify-center gap-4">
+
+            <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" class="group inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-slate-50 border border-slate-200 hover:border-pink-300 hover:bg-pink-50 transition-colors text-slate-600 hover:text-pink-600">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 transition-transform group-hover:scale-110">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+              </svg>
+              <span class="text-sm font-bold">Instagram</span>
+            </a>
+
+            <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" class="group inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-slate-50 border border-slate-200 hover:border-blue-300 hover:bg-blue-50 transition-colors text-slate-600 hover:text-blue-700">
+              <svg class="h-5 w-5 transition-transform group-hover:scale-110" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M22 12C22 6.48 17.52 2 12 2S2 6.48 2 12c0 4.99 3.66 9.12 8.44 9.88v-6.99H7.9v-2.89h2.54V9.41c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.62.77-1.62 1.56v1.88h2.77l-.44 2.89h-2.33V21.9C18.34 21.12 22 16.99 22 12z" />
+              </svg>
+              <span class="text-sm font-bold">Facebook</span>
+            </a>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>

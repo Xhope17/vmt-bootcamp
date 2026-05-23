@@ -21,13 +21,33 @@
 
   <a
     mat-tab-link
+    routerLink="/about"
+    routerLinkActive
+    #rlaAbout="routerLinkActive"
+    [active]="rlaAbout.isActive"
+  >
+    Sobre Nosotros
+  </a>
+
+  <a
+    mat-tab-link
+    routerLink="/contact"
+    routerLinkActive
+    #rlaContact="routerLinkActive"
+    [active]="rlaContact.isActive"
+  >
+    Contactos
+  </a>
+
+  <!-- <a
+    mat-tab-link
     routerLink="/login"
     routerLinkActive
     #rlaLogin="routerLinkActive"
     [active]="rlaLogin.isActive"
   >
     Iniciar sesión
-  </a>
+  </a> -->
 </nav>
 
 <mat-tab-nav-panel #tabPanel></mat-tab-nav-panel>

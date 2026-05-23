@@ -1,0 +1,109 @@
+<section class="min-h-screen bg-linear-to-br from-slate-50 via-indigo-50 to-white px-4 py-6 md:px-8">
+	<div class="mx-auto max-w-7xl space-y-8">
+		<div class="rounded-3xl bg-(--brand) text-white shadow-xl overflow-hidden">
+			<div class="flex flex-col gap-6 px-6 py-8 md:flex-row md:items-center md:justify-between md:px-10">
+				<div>
+					<p class="text-sm uppercase tracking-[0.3em] text-white/70">Panel de Administración</p>
+					<h1 class="mt-2 text-3xl font-extrabold md:text-4xl">Dashboard de productos</h1>
+					<p class="mt-2 max-w-2xl text-white/80">
+						Vista general del inventario y métricas principales usando el servicio de productos.
+					</p>
+				</div>
+
+				<a
+					routerLink="/admin/products"
+					class="inline-flex items-center justify-center rounded-full border border-white/30 bg-white/10 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/20"
+				>
+					Gestionar productos
+				</a>
+			</div>
+		</div>
+
+		<div class="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
+			<mat-card class="rounded-2xl border border-slate-200 bg-white shadow-sm">
+				<mat-card-content class="flex items-center gap-4 p-6">
+					<div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-50 text-blue-600">
+						<mat-icon>inventory_2</mat-icon>
+					</div>
+					<div>
+						<p class="text-sm text-slate-500">Productos</p>
+						<h2 class="text-3xl font-bold text-slate-900">{{ totalProducts() }}</h2>
+					</div>
+				</mat-card-content>
+			</mat-card>
+
+			<mat-card class="rounded-2xl border border-slate-200 bg-white shadow-sm">
+				<mat-card-content class="flex items-center gap-4 p-6">
+					<div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-600">
+						<mat-icon>category</mat-icon>
+					</div>
+					<div>
+						<p class="text-sm text-slate-500">Categorías</p>
+						<h2 class="text-3xl font-bold text-slate-900">{{ categoriesCount() }}</h2>
+					</div>
+				</mat-card-content>
+			</mat-card>
+
+			<mat-card class="rounded-2xl border border-slate-200 bg-white shadow-sm">
+				<mat-card-content class="flex items-center gap-4 p-6">
+					<div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-orange-50 text-orange-600">
+						<mat-icon>warehouse</mat-icon>
+					</div>
+					<div>
+						<p class="text-sm text-slate-500">Stock total</p>
+						<h2 class="text-3xl font-bold text-slate-900">{{ totalStock() }}</h2>
+					</div>
+				</mat-card-content>
+			</mat-card>
+
+			<mat-card class="rounded-2xl border border-slate-200 bg-white shadow-sm">
+				<mat-card-content class="flex items-center gap-4 p-6">
+					<div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-violet-50 text-violet-600">
+						<mat-icon>attach_money</mat-icon>
+					</div>
+					<div>
+						<p class="text-sm text-slate-500">Valor inventario</p>
+						<h2 class="text-3xl font-bold text-slate-900">{{ inventoryValue() | currency:'USD':'symbol':'1.0-0' }}</h2>
+					</div>
+				</mat-card-content>
+			</mat-card>
+		</div>
+
+		<mat-card class="rounded-3xl border border-slate-200 bg-white shadow-sm">
+			<mat-card-content class="p-6 md:p-8">
+				<div class="flex items-center justify-between gap-3">
+					<div>
+						<h2 class="text-2xl font-bold text-slate-900">Resumen rápido</h2>
+						<p class="mt-2 text-sm text-slate-500">Indicadores útiles para la administración diaria.</p>
+					</div>
+					<span class="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-slate-600">
+						Resumen general
+					</span>
+				</div>
+
+				<div class="mt-6 space-y-4">
+					<div class="rounded-2xl bg-slate-50 p-4">
+						<p class="text-sm text-slate-500">Promedio por producto</p>
+						<p class="mt-1 text-2xl font-bold text-slate-900">
+							{{ averageInventoryValue() | currency:'USD':'symbol':'1.0-0' }}
+						</p>
+					</div>
+
+					<div class="rounded-2xl bg-slate-50 p-4">
+						<p class="text-sm text-slate-500">Stock promedio</p>
+						<p class="mt-1 text-2xl font-bold text-slate-900">
+							{{ averageStock() | number:'1.0-0' }}
+						</p>
+					</div>
+
+					<div class="rounded-2xl bg-slate-50 p-4">
+						<p class="text-sm text-slate-500">Productos con descuento</p>
+						<p class="mt-1 text-2xl font-bold text-slate-900">
+							{{ discountedProductsCount() }}
+						</p>
+					</div>
+				</div>
+			</mat-card-content>
+		</mat-card>
+	</div>
+</section>

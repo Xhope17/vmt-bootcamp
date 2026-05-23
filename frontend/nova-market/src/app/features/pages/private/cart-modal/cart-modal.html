@@ -1,0 +1,74 @@
+<form [formGroup]="cartForm" (ngSubmit)="onSubmit()" class="flex flex-col gap-4 p-2">
+
+  <div class="rounded-xl border border-slate-200 bg-slate-50 p-5">
+    <h3 class="mb-4 text-sm font-bold uppercase tracking-wider text-slate-500">Datos del Carrito</h3>
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>ID del Usuario</mat-label>
+      <input matInput type="number" formControlName="userId" placeholder="Ej: 15" />
+      <mat-icon matPrefix class="mr-2 text-slate-400">person</mat-icon>
+      @if (cartForm.get('userId')?.hasError('required')) {
+        <mat-error>El ID del usuario es requerido</mat-error>
+      }
+    </mat-form-field>
+  </div>
+
+  <div class="rounded-xl border border-slate-200 bg-white p-5">
+    <div class="mb-4 flex items-center justify-between">
+      <h3 class="text-sm font-bold uppercase tracking-wider text-slate-500">Productos a añadir</h3>
+
+      @if (data.action !== 'view') {
+        <button type="button" mat-stroked-button color="primary" class="!rounded-full" (click)="addProduct()">
+          <mat-icon>add</mat-icon> Añadir otro producto
+        </button>
+      }
+    </div>
+
+    <div formArrayName="products" class="flex flex-col gap-3">
+      @for (prodCtrl of productsArray.controls; track $index) {
+        <div [formGroupName]="$index" class="flex items-start gap-3 rounded-lg bg-slate-50 p-3">
+
+          <mat-form-field appearance="outline" class="flex-1 mb-[-1.25em]">
+            <mat-label>Producto</mat-label>
+            <mat-select formControlName="id">
+              @for (product of availableProducts(); track product.id) {
+                <mat-option [value]="product.id">
+                  {{ product.title }} - ${{ product.price }}
+                </mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="w-32 mb-[-1.25em]">
+            <mat-label>Cantidad</mat-label>
+            <input matInput type="number" formControlName="quantity" min="1" />
+          </mat-form-field>
+
+          @if (productsArray.length > 1 && data.action !== 'view') {
+            <button type="button" mat-icon-button color="warn" class="mt-1" matTooltip="Quitar de la lista" (click)="removeProduct($index)">
+              <mat-icon>remove_circle_outline</mat-icon>
+            </button>
+          }
+        </div>
+      }
+    </div>
+  </div>
+
+  @if (data.action !== 'view') {
+    <div class="mt-4 flex items-center justify-end gap-3">
+      <button type="button" mat-button mat-dialog-close [disabled]="loading()">Cancelar</button>
+      <button type="submit" mat-flat-button color="primary" [disabled]="cartForm.invalid || loading()" class="!px-6">
+        @if (loading()) {
+          <mat-icon class="animate-spin">autorenew</mat-icon>
+        } @else {
+          <mat-icon>save</mat-icon>
+        }
+        Guardar Carrito
+      </button>
+    </div>
+  } @else {
+    <div class="mt-4 flex items-center justify-end">
+      <button type="button" mat-button color="primary" mat-dialog-close>Cerrar Detalle</button>
+    </div>
+  }
+
+</form>

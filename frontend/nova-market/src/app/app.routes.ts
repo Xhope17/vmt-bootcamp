@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { PublicLayout } from './core/layouts/public/public-layout/public-layout';
 import { authGuard } from './core/guards/auth.guard';
+import { ProductDetailComponent } from './features/pages/public/product-detail-component/product-detail-component';
 
 export const routes: Routes = [
   {
@@ -24,6 +25,22 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./features/pages/public/catalog-component/catalog-component').then(
             (m) => m.CatalogComponent,
+          ),
+      },
+      { path: 'products/:id', component: ProductDetailComponent },
+
+      {
+        path: 'about',
+        loadComponent: () =>
+          import('./features/pages/public/about-us-component/about-us-component').then(
+            (m) => m.AboutUsComponent,
+          ),
+      },
+      {
+        path: 'contact',
+        loadComponent: () =>
+          import('./features/pages/public/contact-us-component/contact-us-component').then(
+            (m) => m.ContactUsComponent,
           ),
       },
       {
@@ -58,6 +75,13 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./features/pages/private/product-management-component/product-management-component').then(
             (m) => m.ProductManagementComponent,
+          ),
+      },
+      {
+        path: 'orders',
+        loadComponent: () =>
+          import('./features/pages/private/cart-management-component/cart-management-component').then(
+            (m) => m.CartManagementComponent,
           ),
       },
     ],
