@@ -85,6 +85,7 @@ namespace TalentInsights.Application.Services
             exist.GitlabProfile = model.GitlabProfile;
             exist.Position = model.Position;
 
+            cache.Update(collaboratorId.ToString(), exist);
             return ResponseHelper.Create(exist, "Colaborador actualizado correctamente");
         }
     }
