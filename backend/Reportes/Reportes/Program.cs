@@ -1,9 +1,12 @@
 using Reportes.Channels;
+using Reportes.Hubs;
 using Reportes.Workers;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+builder.Services.AddSignalR();
 
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
@@ -18,6 +21,16 @@ builder.Services.AddSingleton<ReportesChannel>();
 builder.Services.AddHostedService<GeneradorReportesWorker>();
 
 var app = builder.Build();
+app.UseCors((policy) =>
+{
+    policy.WithOrigins("http://localhost:5500");
+    policy.AllowCredentials();
+    policy.AllowAnyHeader();
+    policy.AllowAnyMethod();
+}
+);
+
+app.MapHub<OrderHub>("/hub/order");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
