@@ -32,7 +32,7 @@ interface GenericDialogData {
     MatInputModule,
     MatIcon,
   ],
-  templateUrl: './student-dialog.html',
+  templateUrl: './student-form.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class StudentDialog implements OnInit {

@@ -23,15 +23,10 @@ interface GenericDialogData {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GenericDialog {
-  title = input('');
-  id = input<string | null>(null);
   isValid = input(false);
   save = output<void>();
   action = input('');
 
-  btnText = input('');
-  message = input('');
-  subMessage = input('');
 
   public data = inject<GenericDialogData>(MAT_DIALOG_DATA);
 

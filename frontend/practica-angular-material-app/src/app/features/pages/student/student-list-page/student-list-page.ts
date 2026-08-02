@@ -9,9 +9,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { GenericDialog } from '../../../../shared/components/generic-dialog/generic-dialog';
 import { Subject } from 'rxjs';
-import { StudentDialog } from '../../../components/student-dialog/student-dialog';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatIcon } from '@angular/material/icon';
+import { StudentDialog } from '../../../components/student-form/student-form';
 
 @Component({
   selector: 'app-student-list-page',
